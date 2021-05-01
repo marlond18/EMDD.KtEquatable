@@ -12,8 +12,10 @@
     <PackageTags>C#, Net5, Source Generator, IEquatable&lt;T&gt;, IEquatable</PackageTags>
     <Description>A source code generator for implemention IEquatable&lt;T&gt; using Attributes.</Description>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/marlond18/EMDD.KtSourceGen.git</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/marlond18/EMDD.KtSourceGen</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/marlond18/EMDD.KtEquatable.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/marlond18/EMDD.KtEquatable</PackageProjectUrl>
+    <Version>1.0.0.1</Version>
+    <PackageReleaseNotes>Updated the github reference</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
