@@ -70,7 +70,7 @@ class Program
             SocialSecurity = SS
         };
         Console.WriteLine(employee1 != employee2);
-        Console.WriteLine(employee2 != employee3);
+        Console.WriteLine(employee2 == employee3);
     }
 }
 ```
