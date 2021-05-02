@@ -22,13 +22,15 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax
     {GeneratedCodeAttributeDeclaration.IndentNextLines(1)}
     public {(IsSealed ? "" : "virtual")} bool Equals({Name}? other) 
     {{
-        {string.Join("\n", GetEqualitySyntax()).IndentNextLines(2)};
+        if (ReferenceEquals(this, other)) return true;
+        if (other is null ||this is null) return false;
+        return {string.Join("\n", GetEqualitySyntax()).IndentNextLines(2)};
     }}
 
     public override int GetHashCode() 
     {{
         var hashCode = new HashCode();
-        {(IsDerived && BaseImplementsEquatable? "hashCode.Add(base.GetHashCode());" : "hashCode.Add(this.GetType());")}
+        {(UseBaseTypeImpl ? "hashCode.Add(base.GetHashCode());" : "hashCode.Add(this.GetType());")}
         {string.Join("\n", PropertiesSytax.Select(p => p.HashCodeString() + ";")).IndentNextLines(2)}
         return hashCode.ToHashCode();
     }}
@@ -36,9 +38,9 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax
 }}";
         }
 
-        private IEnumerable<string> GetEqualitySyntax() => new[]{IsDerived && BaseImplementsEquatable
-        ? $"return base.Equals(other as {BaseName})"
-        : "return !ReferenceEquals(other, null) && EqualityContract == other.EqualityContract"}
+        private IEnumerable<string> GetEqualitySyntax() => new[]{ UseBaseTypeImpl
+        ? $"base.Equals(other as {BaseName})"
+        : "EqualityContract == other.EqualityContract"}
         .Concat(PropertiesSytax.Select(p => p.EqualityString()));
     }
 }

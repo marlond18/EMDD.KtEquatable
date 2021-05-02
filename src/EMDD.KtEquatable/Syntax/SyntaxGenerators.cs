@@ -10,6 +10,21 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax
 {
     public static class SyntaxGenerators
     {
+        public static INamedTypeSymbol GetSymbol(this GeneratorExecutionContext context, string fullyQualifiedMetadataName) =>
+            context.Compilation.GetTypeByMetadataName(fullyQualifiedMetadataName);
+
+        public static INamedTypeSymbol GetIEquatableSymbol(this GeneratorExecutionContext context, string baseType) =>
+            context.Compilation.GetTypeByMetadataName($"System.IEquatable<{baseType}>");
+
+        public static bool ImplementsEquatable(this ITypeSymbol symbol)
+        {
+            if (symbol.ToFullyQualifiedFormat() == "object") return false;
+            return symbol.Interfaces.Any(i => i.Name.Contains("IEquatable"));
+        }
+
+        public static bool ImplementsIEnumebleDouble(this ITypeSymbol symbol) =>
+            symbol.Interfaces.Any(i => i.Name == "IEnumerable" && i.TypeArguments.Any(ii => ii.Name == "Double"));
+
         public static TypeSyntax AssignAndGetParent<T>(this T start, ISymbol symbol) where T : TypeSyntax
         {
             var s = symbol.ContainingSymbol;

@@ -9,6 +9,14 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax
 {
     public class ClassSyntax : TypeSyntaxWithProps
     {
+        public ClassSyntax()
+        {
+            var d = new object();
+            var e = new object();
+            if (ReferenceEquals(d, e)) return;
+            if (d is null) return;
+        }
+
         public override string BuildString()
         {
             return $@"partial class {Name} : IEquatable<{Name}> 
@@ -33,13 +41,15 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax
     {GeneratedCodeAttributeDeclaration.IndentNextLines(1)}
     public bool Equals({Name}? other) 
     {{
-        {string.Join("\n", GetEqualitySyntax()).IndentNextLines(2)};
+        if (ReferenceEquals(this, other)) return true;
+        if (other is null ||this is null) return false;
+        return {string.Join("\n", GetEqualitySyntax()).IndentNextLines(2)};
     }}
 
     public override int GetHashCode() 
     {{
         var hashCode = new HashCode();
-        {(IsDerived && BaseImplementsEquatable ? "hashCode.Add(base.GetHashCode());" : "hashCode.Add(this.GetType());")}
+        {(UseBaseTypeImpl ? "hashCode.Add(base.GetHashCode());" : "hashCode.Add(this.GetType());")}
         {string.Join("\n", PropertiesSytax.Select(p => p.HashCodeString() + ";")).IndentNextLines(2)}
         return hashCode.ToHashCode();
     }}
@@ -47,9 +57,9 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax
 }}";
         }
 
-        private IEnumerable<string> GetEqualitySyntax() => new[]{IsDerived && BaseImplementsEquatable
-        ? $"return base.Equals(other as {BaseName})"
-        : "return !ReferenceEquals(other, null) && this.GetType() == other.GetType()"}
+        private IEnumerable<string> GetEqualitySyntax() => new[]{UseBaseTypeImpl
+        ? $"base.Equals(other as {BaseName})"
+        : "this.GetType() == other.GetType()"}
         .Concat(PropertiesSytax.Select(p => p.EqualityString()));
     }
 }

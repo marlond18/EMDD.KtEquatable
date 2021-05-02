@@ -14,6 +14,8 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax
 
         public bool BaseImplementsEquatable { get; set; }
 
+        public bool UseBaseTypeImpl => IsDerived && BaseImplementsEquatable;
+
         public List<PropertyDefaultEquality> PropertiesSytax { get; set; } = new List<PropertyDefaultEquality>();
     }
 }

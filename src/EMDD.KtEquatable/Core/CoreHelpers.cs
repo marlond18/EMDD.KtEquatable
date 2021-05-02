@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis;
 
 using System;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 using static EMDD.KtSourceGen.KtEquatable.Syntax.SyntaxGenerators;
@@ -10,18 +11,6 @@ namespace EMDD.KtEquatable.Core
 {
     public static class CoreHelpers
     {
-        public static INamedTypeSymbol GetSymbol(this GeneratorExecutionContext context, string fullyQualifiedMetadataName) =>
-            context.Compilation.GetTypeByMetadataName(fullyQualifiedMetadataName);
-
-        public static INamedTypeSymbol GetIEquatableSymbol(this GeneratorExecutionContext context, string baseType) =>
-            context.Compilation.GetTypeByMetadataName($"System.IEquatable<{baseType}>");
-
-        public static bool ImplementsEquatable(this ITypeSymbol symbol)
-        {
-            if (symbol.ToFullyQualifiedFormat() == "object") return false;
-            return symbol.Interfaces.Any(i => i.Name.Contains("IEquatable"));
-        }
-
         public static string IndentAllLines(this string str, int currentTab)
         {
             var tab = currentTab > 0 ? string.Concat(Enumerable.Repeat("\t", currentTab)) : "";
@@ -62,6 +51,19 @@ namespace EMDD.KtEquatable.Core
 
         public static string NameSpace => $"EMDD.{SourceGenName}";
 
-        public const string Version = "2.0.0";
+        public const string Version = "2.0.2";
+
+        public static string BuildUsingStatements(string[] toAdd)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("using System;");
+            sb.AppendLine("using System.Collections.Generic;");
+            sb.Append("using System.CodeDom.Compiler;");
+            if (toAdd?.Length > 0)
+            {
+                sb.Append("\n").Append(string.Join("\n", toAdd));
+            }
+            return sb.ToString();
+        }
     }
 }

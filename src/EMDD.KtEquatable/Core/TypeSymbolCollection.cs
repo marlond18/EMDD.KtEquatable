@@ -18,6 +18,7 @@ namespace EMDD.KtEquatable.Core
         public INamedTypeSymbol ReferenceEquality { get; }
         public INamedTypeSymbol SetEquality { get; }
         public INamedTypeSymbol FloatingPointEquality { get; }
+        public INamedTypeSymbol DoubleEnumerableEquality { get; }
 
         public static TypeSymbolCollection Create(GeneratorExecutionContext context)
         {
@@ -33,6 +34,7 @@ namespace EMDD.KtEquatable.Core
             ReferenceEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.Attributes.{ReferenceEqualityAttributeName}")!;
             SetEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.Attributes.{SetEqualityAttributeName}")!;
             FloatingPointEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.Attributes.{FloatingPointEqualityAttributeName}")!;
+            DoubleEnumerableEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.Attributes.{DoubleEnumerableEqualityAttributeName}")!;
         }
 
         public PropertyEqualityBase ToPropertyEquality(IPropertySymbol property, bool ignoreIfContract)
@@ -42,7 +44,25 @@ namespace EMDD.KtEquatable.Core
             if (property.HasAttribute(Equatable)) return null;
             if (property.HasAttribute(IgnoreEquality)) return new PropertyIgnoreEquality();
             var typeName = property.Type.ToNullableFullyQualifiedFormat();
-            if (property.HasAttribute(UnorderedEquality))
+            if (property.HasAttribute(DoubleEnumerableEquality) && property.Type.ImplementsIEnumebleDouble())
+            {
+                var at = property.GetAttribute(DoubleEnumerableEquality);
+                if (at is not null)
+                {
+                    var precisionStr = at.NamedArguments.SingleOrDefault(kvp => kvp.Key == "Precision").Value;
+                    var inOrderStr = at.NamedArguments.SingleOrDefault(kvp => kvp.Key == "Ordered").Value;
+                    var isSetStr = at.NamedArguments.SingleOrDefault(kvp => kvp.Key == "IsSet").Value;
+
+                    if (!precisionStr.IsNull && int.TryParse(precisionStr.Value.ToString(), out int val))
+                    {
+                        var ord = !inOrderStr.IsNull && bool.TryParse(inOrderStr.Value.ToString(), out bool val2) && val2;
+                        var sset = !isSetStr.IsNull && bool.TryParse(isSetStr.Value.ToString(), out bool val3) && val3;
+                        return new DoubleEnumerableEquality() { Name = propertyName, Precision = val, InOrder = ord, IsSet = sset };
+                    }
+                }
+                return new PropertyDefaultEquality { Name = propertyName, Type = typeName };
+            }
+            else if (property.HasAttribute(UnorderedEquality))
             {
                 var types = property.GetIDictionaryTypeArguments();
                 if (types != null) return new PropertyDictionaryEquality { Name = propertyName, Type = string.Join(", ", types.Value) };
@@ -90,5 +110,6 @@ namespace EMDD.KtEquatable.Core
         private static string ReferenceEqualityAttributeName => "ReferenceEqualityAttribute";
         private static string SetEqualityAttributeName => "SetEqualityAttribute";
         private static string FloatingPointEqualityAttributeName => "FloatingPointEqualityAttribute";
+        private static string DoubleEnumerableEqualityAttributeName => "DoubleEnumerableEqualityAttribute";
     }
 }
