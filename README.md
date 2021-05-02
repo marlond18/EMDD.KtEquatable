@@ -25,7 +25,7 @@ The source generator can be used by marking the target class with ```[Equatable]
 The sample below shows an EmployeeInfo class marked with the specific Attributes.
 ```c#
 using EMDD.KtEquatable.Core.Attributes;
-
+ 
 [Equatable]
 partial class EmployeeInfo
 {
