@@ -91,6 +91,8 @@ class Program
 
 ### Equatable
 The code generator will only recognize ```class``` or```record```marked with  ```[Equatable]```.
+#### Todo
+Implementation for struct (if soon be required)
 
 ### Default
 A property that is not marked by any Attributes mentioned below will produce a generated code that uses ```EqualityComparer<T>.Default``` when checking Equality and calculating Hashcode.
