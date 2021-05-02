@@ -14,7 +14,7 @@ Install-Package EMDD.KtEquatable.Core -Version x.x.x
 
 ## Breaking Changes and Updates 
 ### (2.0.1 to 2.0.2)
-- Added DoubleEnumerableEqualityAttribute
+- Added ```[DoubleEnumerableEqualityAttribute]```
 ### (1.0.0 to 2.0.1)
 - A major breaking change was implemented from 1.0.0 to 2.0.1. The original namespace used to access the Attributes was changed from  ```EMDD.KtSourceGen.KtEquatable.Core``` to ```EMDD.KtEquatable.Core.Attributes```
 - Implementation improvement for the checking of base class was also introduced. If the base class that the class marked with ```[Equatable]``` Attribute was derived from implements ```IEnumerable<T>``` or is marked with ```[Equatable]``` Attribute itself, the implementation of the Equals checking and GetHashCode will pick-up the Equals and GetHashCode implementation of the base class, but for base classes that does not derive ```IEquatable<T>``` or has no ```[Equatable]```, the Equals and GetHashCode implementation bypass the base class, instead, the Equals and GetHashCode  will use property of the base class + it's own properties in the computation.
@@ -127,7 +127,7 @@ public List<double> Salary { get; set; } // Must be double
 ```
 Can be apploed to property whose type implements ```IEnumerable<double>```. 
 
-#### Usage
+##### Usage
 Set ```Precision``` to limit the numbers of decimal places to check
 Set ```Ordered``` true if order is important, false if order does not matter
 Set ```IsSet``` true if the IEnumerable is a set type collection. ```Ordered``` will be bypassed if ```IsSet``` is true
