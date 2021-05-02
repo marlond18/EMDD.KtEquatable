@@ -8,12 +8,12 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax.Property
 
         public override string EqualityString()
         {
-            return $"&& (System.Math.Abs({Name} - other.{Name}) < System.Math.Pow(10,{-Precision}))";
+            return $"&& (Math.Abs({Name} - other.{Name}) < Math.Pow(10,{-Precision}))";
         }
 
         public override string HashCodeString()
         {
-            return $"hashCode.Add(System.Math.Round(this.{Name} * System.Math.Pow(10,{Precision}), 0).GetHashCode())";
+            return $"hashCode.Add(Math.Round(this.{Name} * Math.Pow(10,{Precision}), 0).GetHashCode())";
         }
     }
 }

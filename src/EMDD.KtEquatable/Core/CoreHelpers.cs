@@ -5,10 +5,23 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace EMDD.KtSourceGen.KtEquatable.Core
+using static EMDD.KtSourceGen.KtEquatable.Syntax.SyntaxGenerators;
+namespace EMDD.KtEquatable.Core
 {
     public static class CoreHelpers
     {
+        public static INamedTypeSymbol GetSymbol(this GeneratorExecutionContext context, string fullyQualifiedMetadataName) =>
+            context.Compilation.GetTypeByMetadataName(fullyQualifiedMetadataName);
+
+        public static INamedTypeSymbol GetIEquatableSymbol(this GeneratorExecutionContext context, string baseType) =>
+            context.Compilation.GetTypeByMetadataName($"System.IEquatable<{baseType}>");
+
+        public static bool ImplementsEquatable(this ITypeSymbol symbol)
+        {
+            if (symbol.ToFullyQualifiedFormat() == "object") return false;
+            return symbol.Interfaces.Any(i => i.Name.Contains("IEquatable"));
+        }
+
         public static string IndentAllLines(this string str, int currentTab)
         {
             var tab = currentTab > 0 ? string.Concat(Enumerable.Repeat("\t", currentTab)) : "";
@@ -41,14 +54,14 @@ namespace EMDD.KtSourceGen.KtEquatable.Core
 /// <param name=""right"">The right object</param>
 /// <returns>true if the objects are not equal; otherwise, false.</returns>";
 
-
-        internal const string SourceGenName = "KtEquatable";
-
-        internal static string GeneratedCodeAttributeDeclaration =>
-            "[global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"{NameSpace}\", \"1.0.0.0\")]";
+        internal static string GeneratedCodeAttributeDeclaration => $"[GeneratedCodeAttribute(\"{NameSpace}\", \"{Version}\")]";
 
         internal const string InheritDocComment = "/// <inheritdoc/>";
 
-        public static string NameSpace => $"EMDD.KtSourceGen.{SourceGenName}";
+        internal const string SourceGenName = "KtEquatable";
+
+        public static string NameSpace => $"EMDD.{SourceGenName}";
+
+        public const string Version = "2.0.0";
     }
 }

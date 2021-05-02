@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using EMDD.KtEquatable.Core;
+
+using System.Collections.Generic;
 using System.Linq;
 
-using static EMDD.KtSourceGen.KtEquatable.Core.CoreHelpers;
+using static EMDD.KtEquatable.Core.CoreHelpers;
 
 namespace EMDD.KtSourceGen.KtEquatable.Syntax
 {
@@ -9,13 +11,13 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax
     {
         public override string BuildString()
         {
-            return $@"partial class {Name} : global::System.IEquatable<{Name}> 
+            return $@"partial class {Name} : IEquatable<{Name}> 
 {{
 #nullable enable
     {EqualsOperatorCodeComment.IndentNextLines(1)}
     {GeneratedCodeAttributeDeclaration.IndentNextLines(1)}
     public static bool operator ==({Name}? left, {Name}? right) =>
-        global::System.Collections.Generic.EqualityComparer<{Name}>.Default.Equals(left, right);
+        EqualityComparer<{Name}>.Default.Equals(left, right);
 
     {NotEqualsOperatorCodeComment.IndentNextLines(1)}
     {GeneratedCodeAttributeDeclaration.IndentNextLines(1)}
@@ -36,8 +38,8 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax
 
     public override int GetHashCode() 
     {{
-        var hashCode = new global::System.HashCode();
-        {(BaseType == "object" ? "hashCode.Add(this.GetType());" : "hashCode.Add(base.GetHashCode());")}
+        var hashCode = new HashCode();
+        {(IsDerived && BaseImplementsEquatable ? "hashCode.Add(base.GetHashCode());" : "hashCode.Add(this.GetType());")}
         {string.Join("\n", PropertiesSytax.Select(p => p.HashCodeString() + ";")).IndentNextLines(2)}
         return hashCode.ToHashCode();
     }}
@@ -45,9 +47,9 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax
 }}";
         }
 
-        private IEnumerable<string> GetEqualitySyntax() => new[]{BaseType == "object"
-        ? "return !ReferenceEquals(other, null) && this.GetType() == other.GetType()"
-        : $"return base.Equals(other as {BaseType})"}
+        private IEnumerable<string> GetEqualitySyntax() => new[]{IsDerived && BaseImplementsEquatable
+        ? $"return base.Equals(other as {BaseName})"
+        : "return !ReferenceEquals(other, null) && this.GetType() == other.GetType()"}
         .Concat(PropertiesSytax.Select(p => p.EqualityString()));
     }
 }

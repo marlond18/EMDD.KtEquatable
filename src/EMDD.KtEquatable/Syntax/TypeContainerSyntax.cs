@@ -1,5 +1,4 @@
-﻿using EMDD.KtSourceGen.KtEquatable.Core;
-
+﻿using EMDD.KtEquatable.Core;
 using System.Linq;
 
 namespace EMDD.KtSourceGen.KtEquatable.Syntax

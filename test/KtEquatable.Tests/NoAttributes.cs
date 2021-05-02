@@ -1,4 +1,5 @@
-﻿using EMDD.KtSourceGen.KtEquatable.Core;
+﻿
+using EMDD.KtEquatable.Core.Attributes;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

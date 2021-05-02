@@ -3,12 +3,13 @@ using EMDD.KtSourceGen.KtEquatable.Syntax.Property;
 
 using Microsoft.CodeAnalysis;
 
+using System;
 using System.Linq;
 
-using static EMDD.KtSourceGen.KtEquatable.Core.CoreHelpers;
-namespace EMDD.KtSourceGen.KtEquatable.Core
+using static EMDD.KtEquatable.Core.CoreHelpers;
+namespace EMDD.KtEquatable.Core
 {
-    public sealed class AttributeTypeSymbolCollection
+    public sealed class TypeSymbolCollection
     {
         public INamedTypeSymbol Equatable { get; }
         public INamedTypeSymbol OrderedEquality { get; }
@@ -18,20 +19,20 @@ namespace EMDD.KtSourceGen.KtEquatable.Core
         public INamedTypeSymbol SetEquality { get; }
         public INamedTypeSymbol FloatingPointEquality { get; }
 
-        public static AttributeTypeSymbolCollection Create(GeneratorExecutionContext context)
+        public static TypeSymbolCollection Create(GeneratorExecutionContext context)
         {
-            return new AttributeTypeSymbolCollection(context);
+            return new TypeSymbolCollection(context);
         }
 
-        private AttributeTypeSymbolCollection(GeneratorExecutionContext context)
+        private TypeSymbolCollection(GeneratorExecutionContext context)
         {
-            Equatable = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.{EquatableAttributeName}")!;
-            OrderedEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.{OrderedEqualityAttributeName}")!;
-            IgnoreEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.{IgnoreEqualityAttributeName}")!;
-            UnorderedEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.{UnorderedEqualityAttributeName}")!;
-            ReferenceEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.{ReferenceEqualityAttributeName}")!;
-            SetEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.{SetEqualityAttributeName}")!;
-            FloatingPointEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.{FloatingPointEqualityAttributeName}")!;
+            Equatable = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.Attributes.{EquatableAttributeName}")!;
+            OrderedEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.Attributes.{OrderedEqualityAttributeName}")!;
+            IgnoreEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.Attributes.{IgnoreEqualityAttributeName}")!;
+            UnorderedEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.Attributes.{UnorderedEqualityAttributeName}")!;
+            ReferenceEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.Attributes.{ReferenceEqualityAttributeName}")!;
+            SetEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.Attributes.{SetEqualityAttributeName}")!;
+            FloatingPointEquality = context.Compilation.GetTypeByMetadataName($"{NameSpace}.Core.Attributes.{FloatingPointEqualityAttributeName}")!;
         }
 
         public PropertyEqualityBase ToPropertyEquality(IPropertySymbol property, bool ignoreIfContract)
@@ -89,47 +90,5 @@ namespace EMDD.KtSourceGen.KtEquatable.Core
         private static string ReferenceEqualityAttributeName => "ReferenceEqualityAttribute";
         private static string SetEqualityAttributeName => "SetEqualityAttribute";
         private static string FloatingPointEqualityAttributeName => "FloatingPointEqualityAttribute";
-
-        public static string AttributeCode => $@"
-using System;
-
-namespace {NameSpace}.Core
-{{
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
-    public class {EquatableAttributeName} : Attribute
-    {{
-    }}
-
-    [AttributeUsage(AttributeTargets.Property)]
-    public class {OrderedEqualityAttributeName} : Attribute
-    {{
-    }}
-
-    [AttributeUsage(AttributeTargets.Property)]
-    public class {IgnoreEqualityAttributeName} : Attribute
-    {{
-    }}
-
-    [AttributeUsage(AttributeTargets.Property)]
-    public class {UnorderedEqualityAttributeName} : Attribute
-    {{
-    }}
-
-    [AttributeUsage(AttributeTargets.Property)]
-    public class {ReferenceEqualityAttributeName} : Attribute
-    {{
-    }}
-
-    [AttributeUsage(AttributeTargets.Property)]
-    public class {SetEqualityAttributeName} : Attribute
-    {{
-    }}
-
-    [AttributeUsage(AttributeTargets.Property)]
-    public class {FloatingPointEqualityAttributeName} : Attribute
-    {{
-        public int Precision {{ get; set;}} = 10;
-    }}
-}}";
     }
 }

@@ -10,13 +10,6 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax
 {
     public static class SyntaxGenerators
     {
-        public static (string name, string baseType) GetDeclarationNames(this  ITypeSymbol symbol)
-        {
-            var typeName = symbol.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat);
-            var baseTypeName = symbol.BaseType?.ToFullyQualifiedFormat();
-            return (typeName, baseTypeName);
-        }
-
         public static TypeSyntax AssignAndGetParent<T>(this T start, ISymbol symbol) where T : TypeSyntax
         {
             var s = symbol.ContainingSymbol;

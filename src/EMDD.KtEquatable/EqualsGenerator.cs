@@ -1,4 +1,4 @@
-﻿using EMDD.KtSourceGen.KtEquatable.Core;
+﻿using EMDD.KtEquatable.Core;
 using EMDD.KtSourceGen.KtEquatable.Syntax;
 using EMDD.KtSourceGen.KtEquatable.Syntax.Property;
 
@@ -8,9 +8,11 @@ using Microsoft.CodeAnalysis.Text;
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
-using static EMDD.KtSourceGen.KtEquatable.Core.CoreHelpers;
+using static EMDD.KtEquatable.Core.CoreHelpers;
 using static EMDD.KtSourceGen.KtEquatable.Syntax.SyntaxGenerators;
 namespace EMDD.KtSourceGen.KtEquatable
 {
@@ -22,41 +24,62 @@ namespace EMDD.KtSourceGen.KtEquatable
             //#if DEBUG
             //            Debugger.Launch();
             //#endif
-            context.RegisterForPostInitialization((i) =>
-            {
-                i.AddSource($"{SourceGenName}.Attributes", AttributeTypeSymbolCollection.AttributeCode);
-                i.AddSource($"{SourceGenName}.EqualityComparers", PropertyHasCustomComparer.EqualityComparerText());
-            });
             context.RegisterForSyntaxNotifications(() => new SyntaxReceiver());
         }
 
         public void Execute(GeneratorExecutionContext context)
         {
             if (context.SyntaxReceiver is not SyntaxReceiver s) return;
-            var attrCollection = AttributeTypeSymbolCollection.Create(context);
+            var symbolCollection = TypeSymbolCollection.Create(context);
             foreach (var node in s.CandidateSyntaxes)
             {
                 var symbol = context.GetSymbol(node);
-                if (!symbol.HasAttribute(attrCollection.Equatable)) continue;
-                var (name, baseType) = symbol.GetDeclarationNames();
+                if (!symbol.HasAttribute(symbolCollection.Equatable)) continue;
+                var typeName = symbol.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat);
+                var iequatableImp = context.GetIEquatableSymbol(symbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat));
+                if (symbol.ImplementsEquatable()) continue;
+                var baseType = symbol.BaseType;
+                var baseTypeName = baseType?.ToFullyQualifiedFormat();
+                var iequatableImpOnBase = context.GetIEquatableSymbol(baseTypeName);
+                var baseImplementsIEqu = baseType.ImplementsEquatable() || baseType.HasAttribute(symbolCollection.Equatable);
                 TypeSyntaxWithProps type = node switch
                 {
-                    RecordDeclarationSyntax _ => new RecordSyntax { Name = name, BaseType = baseType, IsSealed = symbol.IsSealed, TypeDec = "record" },
-                    ClassDeclarationSyntax _ => new ClassSyntax() { BaseType = baseType, Name = name },
+                    RecordDeclarationSyntax _ => new RecordSyntax { Name = typeName, BaseImplementsEquatable = baseImplementsIEqu, BaseName = baseTypeName, IsSealed = symbol.IsSealed, TypeDec = "record" },
+                    ClassDeclarationSyntax _ => new ClassSyntax { BaseName = baseTypeName, Name = typeName, BaseImplementsEquatable = baseImplementsIEqu },
                     _ => throw new Exception("Type does not exist, Struct Type soon to be included, or a PR would be nice too.")
                 };
                 var isRecord = node is RecordDeclarationSyntax;
-                foreach (var property in symbol.GetProperties())
+                var props = symbol.GetProperties();
+                if (type.IsDerived && !type.BaseImplementsEquatable)
                 {
-                    var p = attrCollection.ToPropertyEquality(property, isRecord);
+                    props = baseType.GetProperties().Concat(props);
+                }
+                foreach (var property in props)
+                {
+                    var p = symbolCollection.ToPropertyEquality(property, isRecord);
                     if (p is PropertyDefaultEquality d)
                     {
                         type.PropertiesSytax.Add(d);
                     }
                 }
-                var parent = type.AssignAndGetParent(symbol);
-                context.AddSource($"{symbol!.ToDisplayString().ReplaceEscapeChars()}.{SourceGenName}.g.cs"!, SourceText.From(parent.BuildString(), Encoding.UTF8));
+                var parentString = type.AssignAndGetParent(symbol).BuildString();
+                var usingStatements = BuildUsingStatements(type.PropertiesSytax.Any(p => p is PropertyHasCustomComparer));
+                var finalstring = usingStatements + "\n" + parentString;
+                context.AddSource($"{symbol!.ToDisplayString().ReplaceEscapeChars()}.{SourceGenName}.g.cs"!, SourceText.From(finalstring, Encoding.UTF8));
             }
+        }
+
+        private static string BuildUsingStatements(bool usedCustomComparer)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("using System;");
+            sb.AppendLine("using System.Collections.Generic;");
+            sb.Append("using System.CodeDom.Compiler;");
+            if (usedCustomComparer)
+            {
+                sb.Append("\n").Append("using ").Append(NameSpace).Append(".Core.EqualityComparers;");
+            }
+            return sb.ToString();
         }
 
         private class SyntaxReceiver : ISyntaxReceiver

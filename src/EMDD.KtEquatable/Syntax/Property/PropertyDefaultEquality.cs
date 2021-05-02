@@ -1,17 +1,15 @@
-﻿using System.Linq;
-
-namespace EMDD.KtSourceGen.KtEquatable.Syntax.Property
+﻿namespace EMDD.KtSourceGen.KtEquatable.Syntax.Property
 {
     public class PropertyDefaultEquality : PropertyEqualityBase
     {
         public virtual string EqualityString()
         {
-            return $"&& global::System.Collections.Generic.EqualityComparer<{Type}>.Default.Equals({Name}!, other.{ Name}!)";
+            return $"&& EqualityComparer<{Type}>.Default.Equals({Name}!, other.{ Name}!)";
         }
 
         public virtual string HashCodeString()
         {
-            return $"hashCode.Add(this.{Name}!, global::System.Collections.Generic.EqualityComparer<{Type}>.Default)";
+            return $"hashCode.Add(this.{Name}!, EqualityComparer<{Type}>.Default)";
         }
 
         public string Name { get; internal set; }

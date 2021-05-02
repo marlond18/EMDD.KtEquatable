@@ -1,9 +1,6 @@
 ﻿using EMDD.KtSourceGen.KtEquatable.Syntax.Property;
 
 using System.Collections.Generic;
-using System.Linq;
-
-using static EMDD.KtSourceGen.KtEquatable.Core.CoreHelpers;
 
 namespace EMDD.KtSourceGen.KtEquatable.Syntax
 {
@@ -11,7 +8,11 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax
     {
         public string Name { get; set; }
 
-        public string BaseType { get; set; }
+        public string BaseName { get; set; }
+
+        public bool IsDerived => BaseName != "object";
+
+        public bool BaseImplementsEquatable { get; set; }
 
         public List<PropertyDefaultEquality> PropertiesSytax { get; set; } = new List<PropertyDefaultEquality>();
     }
