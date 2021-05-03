@@ -90,6 +90,8 @@ class Program
     }
 }
 ```
+*note: the class marked with [Equatable] including its parent/containing classes must be marked as partial*
+
 ## Supported Attributes
 ### Class/Record Attributes
 #### Equatable
@@ -126,7 +128,7 @@ System.Math.Round(Salary * System.Math.Pow(10,Precision), 0).GetHashCode();
 [DoubleEnumerableEquality(Precision = 10, Ordered = true, IsSet = false)]
 public List<double> Salary { get; set; } // Must be double
 ```
-Can be apploed to property whose type implements ```IEnumerable<double>```. 
+Can be applied to a property whose type implements ```IEnumerable<double>```. 
 
 ##### Usage
 Set ```Precision``` to limit the numbers of decimal places to check
