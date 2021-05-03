@@ -14,7 +14,7 @@ Install-Package EMDD.KtEquatable.Core -Version x.x.x
 
 ## Breaking Changes and Updates 
 ### (2.0.1 to 2.0.2)
-- Added ```[DoubleEnumerableEqualityAttribute]```
+- Added [```[DoubleEnumerableEqualityAttribute]```](https://github.com/marlond18/EMDD.KtEquatable/blob/main/src/EMDD.KtEquatable.Core/Attributes/DoubleEnumerableEqualityAttribute.cs)
 ### (1.0.0 to 2.0.1)
 - A major breaking change was implemented from 1.0.0 to 2.0.1. The original namespace used to access the Attributes was changed from  ```EMDD.KtSourceGen.KtEquatable.Core``` to ```EMDD.KtEquatable.Core.Attributes```
 - Implementation improvement for the checking of base class was also introduced. If the base class that the class marked with ```[Equatable]``` Attribute was derived from implements ```IEnumerable<T>``` or is marked with ```[Equatable]``` Attribute itself, the implementation of the Equals checking and GetHashCode will pick-up the Equals and GetHashCode implementation of the base class, but for base classes that does not derive ```IEquatable<T>``` or has no ```[Equatable]```, the Equals and GetHashCode implementation bypass the base class, instead, the Equals and GetHashCode  will use property of the base class + it's own properties in the computation.
@@ -91,23 +91,24 @@ class Program
 }
 ```
 ## Supported Attributes
-
-### Equatable
+### Class/Record Attributes
+#### Equatable
 The code generator will only recognize ```class``` or```record```marked with  ```[Equatable]```.
-#### Todo
-Implementation for struct (if soon be required)
+##### Todo
+Implementation for ```struct``` (if soon be required)
 
-### Default
+### Property Attributes
+#### Default (No Attribute)
 A property that is not marked by any Attributes mentioned below will produce a generated code that uses ```EqualityComparer<T>.Default``` when checking Equality and calculating Hashcode.
 
-### IgnoreEquality
+#### IgnoreEquality
 Properties marked with ```[IgnoreEquality]``` will not be included in the equality checking and Hashcode calculation
 ```c#
 [IgnoreEquality] 
 public string Name { get; set; }
 ```
 
-### FloatingPointEquality
+#### FloatingPointEquality
 ```c#
 [FloatingPointEquality(Precision = 10)]
 public double Salary { get; set; } // Must be double
@@ -120,7 +121,7 @@ The hashcode is also computed by rounding off the value of the property
 ```c#
 System.Math.Round(Salary * System.Math.Pow(10,Precision), 0).GetHashCode();
 ```
-### DoubleEnumerableEquality (2.0.2)
+#### DoubleEnumerableEquality (2.0.2)
 ```c#
 [DoubleEnumerableEquality(Precision = 10, Ordered = true, IsSet = false)]
 public List<double> Salary { get; set; } // Must be double
@@ -133,7 +134,7 @@ Set ```Ordered``` true if order is important, false if order does not matter
 Set ```IsSet``` true if the IEnumerable is a set type collection. ```Ordered``` will be bypassed if ```IsSet``` is true
 
 
-### OrderedEquality, UnorderedEquality, and SetEquality
+#### OrderedEquality, UnorderedEquality, and SetEquality
 Comparison of Collections/IEnumerables with specific requirements such as when the order is not or is required or if the collection can have repeated elements.
 ```c#
 [Equatable]
@@ -150,7 +151,7 @@ partial class Book
 }
 ```
 
-### ReferenceEquality
+#### ReferenceEquality
 A property marked with ```[ReferenceEquality]``` will use Reference equality checking only
 ```c#
 [ReferenceEquality]
