@@ -6,6 +6,8 @@
     <AssemblyName>EMDD.KtEquatable</AssemblyName>
     <Authors>Marlon D. Dumal-is</Authors>
     <Company>EMDD</Company>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>emd2.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
@@ -14,9 +16,8 @@
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/marlond18/EMDD.KtEquatable.git</RepositoryUrl>
     <PackageProjectUrl>https://github.com/marlond18/EMDD.KtEquatable</PackageProjectUrl>
-    <Version>2.0.2</Version>
+    <Version>3.0.0</Version>
     <PackageReleaseNotes>Adding Method for IEnumerable&lt;double&gt;</PackageReleaseNotes>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -26,7 +27,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\..\build\EMDD.KtEquatable\</OutputPath>
   </PropertyGroup>
-
+  
+    <PropertyGroup>
+    <RestoreAdditionalProjectSources>https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet5/nuget/v3/index.json ;$(RestoreAdditionalProjectSources)</RestoreAdditionalProjectSources>
+  </PropertyGroup>
+  
   <ItemGroup>
     <None Include="..\..\.editorconfig" Link=".editorconfig" />
     <None Include="Images\emd2.png">
