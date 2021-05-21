@@ -1,3 +1,4 @@
+<img align="left" src="src/EMDD.KtEquatable/Images/emd2.png" width="120" height="120">
 ![Nuget](https://img.shields.io/nuget/v/EMDD.KtEquatable?style=flat-square)![Nuget](https://img.shields.io/nuget/dt/EMDD.KtEquatable?style=flat-square)
 # EMDD.KtEquatable
 use of C# 9.0 Source Generator to AutoGenerate IEquatable&lt;T&gt; using attributes.
