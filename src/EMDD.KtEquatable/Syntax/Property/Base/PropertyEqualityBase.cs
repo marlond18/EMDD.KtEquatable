@@ -1,4 +1,4 @@
-﻿namespace EMDD.KtSourceGen.KtEquatable.Syntax.Property
+﻿namespace EMDD.KtEquatable.Syntax.Property.Base
 {
     public abstract class PropertyEqualityBase
     {

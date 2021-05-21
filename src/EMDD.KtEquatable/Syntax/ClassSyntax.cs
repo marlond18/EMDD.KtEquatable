@@ -1,65 +1,69 @@
 ﻿using EMDD.KtEquatable.Core;
 
-using System.Collections.Generic;
-using System.Linq;
+using System.CodeDom.Compiler;
 
 using static EMDD.KtEquatable.Core.CoreHelpers;
 
-namespace EMDD.KtSourceGen.KtEquatable.Syntax
+namespace EMDD.KtEquatable.Syntax
 {
-    public class ClassSyntax : TypeSyntaxWithProps
-    {
-        public ClassSyntax()
-        {
-            var d = new object();
-            var e = new object();
-            if (ReferenceEquals(d, e)) return;
-            if (d is null) return;
-        }
-
-        public override string BuildString()
-        {
-            return $@"partial class {Name} : IEquatable<{Name}> 
-{{
 #nullable enable
-    {EqualsOperatorCodeComment.IndentNextLines(1)}
-    {GeneratedCodeAttributeDeclaration.IndentNextLines(1)}
-    public static bool operator ==({Name}? left, {Name}? right) =>
-        EqualityComparer<{Name}>.Default.Equals(left, right);
-
-    {NotEqualsOperatorCodeComment.IndentNextLines(1)}
-    {GeneratedCodeAttributeDeclaration.IndentNextLines(1)}
-    public static bool operator !=({Name}? left, {Name}? right) =>
-        !(left == right);
-
-    {InheritDocComment}
-    {GeneratedCodeAttributeDeclaration.IndentNextLines(1)}
-    public override bool Equals(object? obj) =>
-        Equals(obj as {Name});
-
-    {InheritDocComment}
-    {GeneratedCodeAttributeDeclaration.IndentNextLines(1)}
-    public bool Equals({Name}? other) 
-    {{
-        if (ReferenceEquals(this, other)) return true;
-        if (other is null ||this is null) return false;
-        return {string.Join("\n", GetEqualitySyntax()).IndentNextLines(2)};
-    }}
-
-    public override int GetHashCode() 
-    {{
-        var hashCode = new HashCode();
-        {(UseBaseTypeImpl ? "hashCode.Add(base.GetHashCode());" : "hashCode.Add(this.GetType());")}
-        {string.Join("\n", PropertiesSytax.Select(p => p.HashCodeString() + ";")).IndentNextLines(2)}
-        return hashCode.ToHashCode();
-    }}
-#nullable restore
-}}";
+    public class ClassSyntax : EquatableTypeSyntax
+    {
+        public override void BuildString(IndentedTextWriter indented)
+        {
+            indented.WriteLine($"partial class {Name} : IEquatable<{Name}>");
+            indented.WriteLine("{");
+            indented.WriteLineNoTabs("#nullable enable");
+            indented.Indent++;
+            indented.AddSummary(SummaryGenerators.EqualOpSummary);
+            indented.WriteLine(GeneratedCodeAttributeDeclaration);
+            indented.WriteLine($"public static bool operator ==({Name}? left, {Name}? right) =>");
+            indented.WriteLine($"\tEqualityComparer<{Name}>.Default.Equals(left, right);");
+            indented.WriteLine();
+            indented.AddSummary(SummaryGenerators.NotEqualOpSummary);
+            indented.WriteLine(GeneratedCodeAttributeDeclaration);
+            indented.WriteLine($"public static bool operator !=({Name}? left, {Name}? right) =>");
+            indented.WriteLine("\t!(left == right);");
+            indented.WriteLine();
+            indented.WriteLine(InheritDocComment);
+            indented.WriteLine(GeneratedCodeAttributeDeclaration);
+            indented.WriteLine("public override bool Equals(object? obj) =>");
+            indented.WriteLine($"\tEquals(obj as {Name});");
+            indented.WriteLine();
+            Equality(indented);
+            indented.WriteLine();
+            if (BaseType.MarkedAsEquatable)
+            {
+                indented.WriteLine();
+                indented.WriteLine(InheritDocComment);
+                indented.WriteLine(GeneratedCodeAttributeDeclaration);
+                indented.WriteLine($"public sealed override bool Equals({BaseType.Name}? other)");
+                indented.WriteLine("{");
+                indented.Indent++;
+                indented.WriteLine($"return Equals(other as {Name});");
+                indented.Indent--;
+                indented.WriteLine("}");
+            }
+            indented.WriteLine();
+            Hash(indented);
+            indented.WriteLine();
+            indented.Indent--;
+            indented.WriteLineNoTabs("#nullable restore");
+            indented.Write("}");
         }
 
-        private IEnumerable<string> GetEqualitySyntax() => new[]{UseBaseTypeImpl
-        ? $"base.Equals(other as {BaseName})"
-        : "this.GetType() == other.GetType()"}
-        .Concat(PropertiesSytax.Select(p => p.EqualityString()));
+        protected override bool UseBase() =>
+            !BaseType.IsBaseObject && (BaseType.MarkedAsEquatable || BaseType.MarkedWithIEquatable);
+
+        protected override void FSE(IndentedTextWriter writer)
+        {
+            writer.Write(UseBase() ? $"base.Equals(other as {BaseType.Name})" : "this.GetType() == other.GetType()");
+        }
+
+        protected override void FSH(IndentedTextWriter writer)
+        {
+            writer.Write(UseBase() ? "hashCode.Add(base.GetHashCode());" : "hashCode.Add(this.GetType());");
+        }
     }
+#nullable restore
 }

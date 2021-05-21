@@ -1,19 +1,31 @@
 ﻿using EMDD.KtEquatable.Core;
 
+using System.CodeDom.Compiler;
 using System.Linq;
 
-namespace EMDD.KtSourceGen.KtEquatable.Syntax
+namespace EMDD.KtEquatable.Syntax
 {
     public class NameSpaceContainerSyntax : TypeSyntax
     {
         public string Name { get; set; }
 
-        public override string BuildString()
+        public override void BuildString(IndentedTextWriter writer)
         {
-            return $@"namespace {Name}
-{{
-    {string.Join("\n", Children.Select(c => c.BuildString())).IndentNextLines(1)}
-}}";
+            writer.WriteLine($"namespace {Name}");
+            writer.Write("{");
+            writer.Indent++;
+            foreach (var child in Children)
+            {
+                writer.WriteLine();
+                child.BuildString(writer);
+            }
+            writer.WriteLine();
+            writer.Indent--;
+            writer.Write("}");
+            //            return $@"namespace {Name}
+            //{{
+            //{string.Join("\n", Children.Select(c => c.BuildString())).IndentAllLines(1, Indention)}
+            //}}";
         }
     }
 }

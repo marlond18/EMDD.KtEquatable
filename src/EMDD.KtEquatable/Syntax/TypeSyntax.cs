@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.CodeDom.Compiler;
+using System.Collections.Generic;
 
-namespace EMDD.KtSourceGen.KtEquatable.Syntax
+namespace EMDD.KtEquatable.Syntax
 {
     public abstract class TypeSyntax
     {
@@ -13,6 +14,6 @@ namespace EMDD.KtSourceGen.KtEquatable.Syntax
             return Parent is null ? this : Parent.GetRootParent();
         }
 
-        public abstract string BuildString();
+        public abstract void BuildString(IndentedTextWriter writer);
     }
 }

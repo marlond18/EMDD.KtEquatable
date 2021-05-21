@@ -1,6 +1,4 @@
-﻿using static EMDD.KtEquatable.Core.CoreHelpers;
-
-namespace EMDD.KtSourceGen.KtEquatable.Syntax.Property
+﻿namespace EMDD.KtEquatable.Syntax.Property
 {
     public abstract class PropertyHasCustomComparer : PropertyDefaultEquality
     {

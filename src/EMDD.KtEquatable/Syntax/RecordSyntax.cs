@@ -1,46 +1,47 @@
 ﻿using EMDD.KtEquatable.Core;
 
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 using static EMDD.KtEquatable.Core.CoreHelpers;
 
-namespace EMDD.KtSourceGen.KtEquatable.Syntax
+namespace EMDD.KtEquatable.Syntax
 {
-    public class RecordSyntax : TypeSyntaxWithProps
+    public class RecordSyntax : EquatableTypeSyntax
     {
-        public string TypeDec { get; set; }
-
-        public bool IsSealed { get; set; }
-
-        public override string BuildString()
+        public override void BuildString(IndentedTextWriter indented)
         {
-            return $@"partial {TypeDec} {Name}
-{{
-#nullable enable
-    {EqualsOperatorCodeComment.IndentNextLines(1)}
-    {GeneratedCodeAttributeDeclaration.IndentNextLines(1)}
-    public {(IsSealed ? "" : "virtual")} bool Equals({Name}? other) 
-    {{
-        if (ReferenceEquals(this, other)) return true;
-        if (other is null ||this is null) return false;
-        return {string.Join("\n", GetEqualitySyntax()).IndentNextLines(2)};
-    }}
+            //using var stringwritter = new StringWriter();
+            //using var indented = new IndentedTextWriter(stringwritter, Indention);
 
-    public override int GetHashCode() 
-    {{
-        var hashCode = new HashCode();
-        {(UseBaseTypeImpl ? "hashCode.Add(base.GetHashCode());" : "hashCode.Add(this.GetType());")}
-        {string.Join("\n", PropertiesSytax.Select(p => p.HashCodeString() + ";")).IndentNextLines(2)}
-        return hashCode.ToHashCode();
-    }}
-#nullable restore
-}}";
+            indented.WriteLine($"partial record {Name}");
+            indented.WriteLine("{");
+            indented.WriteLineNoTabs("#nullable enable");
+            indented.Indent++;
+            Equality(indented);
+            indented.WriteLine();
+            indented.WriteLine();
+            Hash(indented);
+            indented.WriteLine();
+            indented.WriteLineNoTabs("#nullable restore");
+            indented.Indent--;
+            indented.Write("}");
+
+            //return stringwritter.ToString();
         }
 
-        private IEnumerable<string> GetEqualitySyntax() => new[]{ UseBaseTypeImpl
-        ? $"base.Equals(other as {BaseName})"
-        : "EqualityContract == other.EqualityContract"}
-        .Concat(PropertiesSytax.Select(p => p.EqualityString()));
+        protected override bool UseBase() => !BaseType.IsBaseObject;
+
+        protected override void FSE(IndentedTextWriter writer)
+        {
+            writer.Write(UseBase() ? $"base.Equals(other as {BaseType.Name})" : "EqualityContract == other.EqualityContract");
+        }
+
+        protected override void FSH(IndentedTextWriter writer)
+        {
+            writer.Write(UseBase() ? "hashCode.Add(base.GetHashCode());" : "hashCode.Add(this.GetType());");
+        }
     }
 }
