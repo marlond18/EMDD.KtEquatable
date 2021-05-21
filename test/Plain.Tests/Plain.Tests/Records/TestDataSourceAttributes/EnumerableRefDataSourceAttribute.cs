@@ -51,7 +51,7 @@ namespace KtEquatable.Unit.Tests.Records.TestDataSourceAttributes
             }
             else
             {
-                return ListOfAllNonClass().Select(MakeNullable).Select(ListOfEnumerables).SelectMany(f => f);
+                return ListOfAllNonClass().Select(ListOfEnumerables).SelectMany(f => f);
             }
         }
     }

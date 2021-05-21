@@ -1,4 +1,4 @@
-//#define LongTest
+#define LongTest
 
 using EMDD.KtEquatable;
 
@@ -603,7 +603,6 @@ namespace KtEquatable.Unit.Tests
         public static IEnumerable<Type> ListOfNonFloat()
         {
 #if LongTest
-            return No().Concat(NonClassTypes().Select(MakeNullable));
             return ListOfAllNonClass().Except(ListOfFloats()).Concat(BasicClassTypes());
 #else
             return ListOfAllNonClass().Except(ListOfFloats());
