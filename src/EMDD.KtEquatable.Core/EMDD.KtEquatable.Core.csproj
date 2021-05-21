@@ -11,11 +11,11 @@
     <PackageIcon>emd2.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <PackageTags>C#, Net5, Source Generator, IEquatable&lt;T&gt;, IEquatable</PackageTags>
-    <Description>A source code generator for implemention IEquatable&lt;T&gt; using Attributes.</Description>
+    <Description>The core functionality used for KtEquatable, the source code generator for implemention IEquatable&lt;T&gt; using Attributes.</Description>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/marlond18/EMDD.KtEquatable.git</RepositoryUrl>
     <PackageProjectUrl>https://github.com/marlond18/EMDD.KtEquatable</PackageProjectUrl>
-    <Version>3.0.1</Version>
+    <Version>3.0.2</Version>
     <PackageReleaseNotes>Adding Method for IEnumerable&lt;double&gt;</PackageReleaseNotes>
   </PropertyGroup>
 
