@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\EMDD.KtEquatable\EMDD.KtEquatable.csproj" />
+    <ProjectReference Include="..\..\src\EMDD.KtEquatable\EMDD.KtEquatable.csproj" />
   </ItemGroup>
 
 </Project>
