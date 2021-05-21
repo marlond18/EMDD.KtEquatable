@@ -6,13 +6,29 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
-namespace KtEquatable.Tests.Classes
+namespace Tests.Records
 {
     [TestClass]
     public partial class NoAttributes
     {
         [Equatable]
-        public partial class TempData
+        public abstract partial record A
+        {
+        }
+
+        [Equatable]
+        public abstract partial record B : A
+        {
+        }
+
+        [Equatable]
+        public partial record C : B
+        {
+            public int Value { get; set; }
+        }
+
+        [Equatable]
+        public partial record TempData
         {
             public int Age { get; set; }
 
@@ -20,7 +36,7 @@ namespace KtEquatable.Tests.Classes
         }
 
         [Equatable]
-        public partial class TempData2
+        public partial record TempData2
         {
             public int Age { get; set; }
 

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KtEquatable.Tests
+namespace Tests.Classes
 {
     [TestClass]
     public partial class DoubleEnumerableTests
@@ -16,7 +16,8 @@ namespace KtEquatable.Tests
         [Equatable]
         public partial class A
         {
-            [DoubleEnumerableEquality(Precision = 2)]
+            [EnumerableEquality(EnumerableOrderType.Unordered)]
+            [FloatingPointEquality(2)]
             public List<double>? D { get; set; }
         }
 
@@ -47,7 +48,8 @@ namespace KtEquatable.Tests
         [Equatable]
         public partial class B
         {
-            [DoubleEnumerableEquality(Precision = 2, Ordered = true)]
+            [EnumerableEquality(EnumerableOrderType.Ordered)]
+            [FloatingPointEquality(2)]
             public List<double>? D { get; set; }
         }
 
@@ -76,16 +78,15 @@ namespace KtEquatable.Tests
         }
 
         [TestClass]
-        public class MustBeInOrderCountFail: EqualityTestWithOperatorBase
+        public class MustBeInOrderCountFail : EqualityTestWithOperatorBase
         {
             public override bool MustBeEqual => false;
 
-            public override object Data1() => new B { D = new List<double> { 1, 3, 2.003, 4 ,5 } };
+            public override object Data1() => new B { D = new List<double> { 1, 3, 2.003, 4, 5 } };
             public override object Data2() => new B { D = new List<double> { 1, 3, 2.004, 4 } };
 
             public override bool EqualsOperator(object value1, object value2) => (B)value1 == (B)value2;
             public override bool NotEqualsOperator(object value1, object value2) => (B)value1 != (B)value2;
         }
-
     }
 }

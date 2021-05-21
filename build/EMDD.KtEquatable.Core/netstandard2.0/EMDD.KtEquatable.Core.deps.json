@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "EMDD.KtEquatable.Core/3.0.0": {
+      "EMDD.KtEquatable.Core/3.0.2": {
         "dependencies": {
           "Microsoft.Bcl.HashCode": "1.1.0",
           "NETStandard.Library": "2.0.3"
@@ -33,7 +33,7 @@
     }
   },
   "libraries": {
-    "EMDD.KtEquatable.Core/3.0.0": {
+    "EMDD.KtEquatable.Core/3.0.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

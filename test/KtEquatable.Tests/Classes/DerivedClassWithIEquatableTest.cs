@@ -2,13 +2,16 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EMDD.KtEquatable.Core;
 using EMDD.KtEquatable.Core.Attributes;
+using System;
+using EMDD.KtEquatable.Core.EqualityComparers;
+using System.Collections.Generic;
 
-namespace KtEquatable.Tests
+namespace Tests.Classes
 {
     [TestClass]
     public partial class DerivedClassWithIEquatableTest
     {
-        public class Person: System.IEquatable<Person>
+        public class Person : System.IEquatable<Person>
         {
             public string? Name { get; set; }
             public int Age { get; set; }
@@ -17,12 +20,22 @@ namespace KtEquatable.Tests
             {
                 return false;
             }
+
+            public override bool Equals(object? obj)
+            {
+                return Equals(obj as Person);
+            }
+
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(Name, Age);
+            }
         }
 
         [Equatable]
         public partial class Employee : Person
         {
-            [FloatingPointEquality(Precision = 20)]
+            [FloatingPointEquality(20)]
             public double Salary { get; set; }
         }
 

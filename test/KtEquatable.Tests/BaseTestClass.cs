@@ -1,20 +1,20 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace KtEquatable.Tests
+namespace Tests
 {
     [TestClass]
     public abstract class EqualityTestBase
     {
-        public abstract bool MustBeEqual{get;}
+        public abstract bool MustBeEqual { get; }
         public abstract object Data1();
         public abstract object Data2();
 
-        [TestMethod("Equal objects using the default object equality method")]
+        [TestMethod("DefaultEquality")]
         public void EqualsTest1()
         {
             var data1 = Data1();
             var data2 = Data2();
-            if(MustBeEqual)
+            if (MustBeEqual)
             {
                 Assert.AreEqual(data1, data2, $"data1:{data1} and data2:{data2} should be equal");
             }
@@ -23,15 +23,30 @@ namespace KtEquatable.Tests
                 Assert.AreNotEqual(data1, data2, $"data1:{data1} and data2:{data2} should be not equal");
             }
         }
+
+        [TestMethod("Equal<T>(T other)")]
+        public void EqualsTest3()
+        {
+            var data1 = Data1();
+            var data2 = Data2();
+            if (MustBeEqual)
+            {
+                Assert.IsTrue(data1.Equals(data2), $"data1:{data1} and data2:{data2} should be equal");
+            }
+            else
+            {
+                Assert.IsFalse(data1.Equals(data2), $"data1:{data1} and data2:{data2} should be not equal");
+            }
+        }
     }
 
     [TestClass]
-    public abstract class EqualityTestWithOperatorBase: EqualityTestBase
+    public abstract class EqualityTestWithOperatorBase : EqualityTestBase
     {
         public abstract bool EqualsOperator(object value1, object value2);
         public abstract bool NotEqualsOperator(object value1, object value2);
 
-        [TestMethod("Equal objects using the equality operator")]
+        [TestMethod("Using Equality operator")]
         public void EqualsTest2()
         {
             var data1 = Data1();

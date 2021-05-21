@@ -6,8 +6,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
-namespace KtEquatable.Tests.Classes
+namespace Tests.Classes
 {
+#nullable enable
     [TestClass]
     public partial class MixedTests
     {
@@ -19,13 +20,13 @@ namespace KtEquatable.Tests.Classes
             [IgnoreEquality]
             public int Id { get; set; }
 
-            [FloatingPointEquality(Precision = 4)]
+            [FloatingPointEquality(4)]
             public double Salary { get; set; }
 
-            [UnorderedEquality]
+            [EnumerableEquality(EnumerableOrderType.Unordered)]
             public Dictionary<string, int>? BankAccountDetails { get; set; }
 
-            [OrderedEquality]
+            [EnumerableEquality(EnumerableOrderType.Ordered)]
             public List<DateTime>? TimeIn { get; set; }
 
             [ReferenceEquality]
@@ -48,35 +49,38 @@ namespace KtEquatable.Tests.Classes
             public override bool NotEqualsOperator(object value1, object value2) => (EmployeeInfo)value1 != (EmployeeInfo)value2;
         }
 
-        private static readonly EmployeeInfo Employee1 = new() {
+        private static readonly EmployeeInfo Employee1 = new()
+        {
             Name = "Chipotle",
             Id = 3,
             Salary = 10000.0003,
             BankAccountDetails = new Dictionary<string, int> { { "Wells", 123 }, { "JP", 234 }, { "BoA", 345 } },
             Superior = Boss1,
-            TimeIn= new List<DateTime> { new DateTime (2012,3,4), new DateTime(2012, 3, 5), new DateTime(2012, 3, 6) },
-            SocialSecurity="AAA"
+            TimeIn = new List<DateTime> { new DateTime(2012, 3, 4), new DateTime(2012, 3, 5), new DateTime(2012, 3, 6) },
+            SocialSecurity = "AAA"
         };
 
         private const string SS = "BBB";
 
-        private static readonly EmployeeInfo Employee2 = new() {
+        private static readonly EmployeeInfo Employee2 = new()
+        {
             Name = "Chipotle",
             Id = 3,
             Salary = 10000.0003,
             BankAccountDetails = new Dictionary<string, int> { { "Wells", 123 }, { "JP", 234 }, { "BoA", 345 } },
             Superior = Boss2,
-            TimeIn= new List<DateTime> { new DateTime (2012,3,4), new DateTime(2012, 3, 5), new DateTime(2012, 3, 6)},
-            SocialSecurity= SS
+            TimeIn = new List<DateTime> { new DateTime(2012, 3, 4), new DateTime(2012, 3, 5), new DateTime(2012, 3, 6) },
+            SocialSecurity = SS
         };
 
-        private static readonly EmployeeInfo Employee3 = new() {
+        private static readonly EmployeeInfo Employee3 = new()
+        {
             Name = "Chipotle",
             Id = 3,
             Salary = 10000.0004,
             BankAccountDetails = new Dictionary<string, int> { { "Wells", 123 }, { "JP", 234 }, { "BoA", 345 } },
             Superior = Boss2,
-            TimeIn= new List<DateTime> { new DateTime (2012,3,4), new DateTime(2012, 3, 5), new DateTime(2012, 3, 6) },
+            TimeIn = new List<DateTime> { new DateTime(2012, 3, 4), new DateTime(2012, 3, 5), new DateTime(2012, 3, 6) },
             SocialSecurity = SS
         };
 
@@ -147,7 +151,7 @@ namespace KtEquatable.Tests.Classes
             Name = "Karen",
             Id = 3,
             Salary = 10000.00004,
-            BankAccountDetails = new Dictionary<string, int> { { "JP", 234 },   { "BoA", 345 }, { "Wells", 123 } },
+            BankAccountDetails = new Dictionary<string, int> { { "JP", 234 }, { "BoA", 345 }, { "Wells", 123 } },
             Superior = Boss2,
             TimeIn = new List<DateTime> { new DateTime(2012, 3, 4), new DateTime(2012, 3, 5), new DateTime(2012, 3, 6) },
             SocialSecurity = SS
@@ -181,7 +185,7 @@ namespace KtEquatable.Tests.Classes
             Salary = 10000.00004,
             BankAccountDetails = new Dictionary<string, int> { { "JP", 234 }, { "BoA", 345 }, { "Wells", 123 } },
             Superior = Boss2,
-            TimeIn = new List<DateTime> { new DateTime(2012, 3, 5), new DateTime(2012, 3, 4) , new DateTime(2012, 3, 6) },
+            TimeIn = new List<DateTime> { new DateTime(2012, 3, 5), new DateTime(2012, 3, 4), new DateTime(2012, 3, 6) },
             SocialSecurity = SS
         };
 
@@ -206,4 +210,5 @@ namespace KtEquatable.Tests.Classes
             public override bool NotEqualsOperator(object value1, object value2) => (EmployeeInfo)value1 != (EmployeeInfo)value2;
         }
     }
+#nullable restore
 }
