@@ -18,6 +18,7 @@ https://www.nuget.org/packages/EMDD.KtEquatable/
 ## Breaking Changes and Updates 
 ### (2.0.2 to 3.0.0)
 - ditched EMDD.KtEquatable.Core, it's  not needed any longer.
+    * The `<IncludeBuildOutput>false</IncludeBuildOutput>` has to be removed in order for the custom attributes to be visible for use, this way the project is treated both as an analyzer and a common library. The only problem is that if a project using this source generator is referenced by another project, this source generator will also be visible on the referencing project.
 - Added [```Diagnostic Reports```](https://github.com/marlond18/EMDD.KtEquatable/blob/main/Diagnostics.md) (Compilation Error Reports)
 - Changes on the Attribute usage particularly `FloatingPointEqualityAttribute`
     - the use of the precision parameter `FloatingPointEqualityAttribute`
