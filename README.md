@@ -164,5 +164,5 @@ partial class Mechanic
 ```
 The `Payments` property will be compared using `new UnorderedEqualityComparer(new FloatingPointEqualityComparer(3))`
 
-## Diagnostic Reports (added on 3.0.0)
-https://github.com/marlond18/EMDD.KtEquatable/blob/main/Diagnostics.md
+## [```Diagnostic Reports (added on 3.0.0)```](https://github.com/marlond18/EMDD.KtEquatable/blob/main/Diagnostics.md)
+
