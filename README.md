@@ -1,4 +1,4 @@
-<img align="left" src="src/EMDD.KtEquatable/Images/emd2.png" width="120" height="120">
+<img align="left" src="src/EMDD.KtEquatable/Images/emd2.png" width="120" height="70">
 
 &nbsp; ![Nuget](https://img.shields.io/nuget/v/EMDD.KtEquatable?style=flat-square)![Nuget](https://img.shields.io/nuget/dt/EMDD.KtEquatable?style=flat-square)
 # EMDD.KtEquatable
