@@ -1,4 +1,4 @@
-#Diagnostic Reports (added on 3.0.0)
+# Diagnostic Reports (added on 3.0.0)
 ## Compilation Error:
 ### KTEQG1
 - Static classes can't be marked as Equatable
