@@ -34,7 +34,7 @@ https://www.nuget.org/packages/EMDD.KtEquatable/
 
 ## Usage
 The source generator can be used by marking the target class/record with ```[Equatable]``` Attribute. The properties can also be marked with specific attributes specify the equality comparison method to be used.
-The sample below shows an EmployeeInfo class marked with the specific Attributes.
+The sample below shows an `EmployeeInfo` class marked with the specific Attributes.
 ```c#
 using EMDD.KtEquatable.Core.Attributes;
  
