@@ -1,41 +1,26 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests
+namespace KtEquatable.Tests
 {
     [TestClass]
     public abstract class EqualityTestBase
     {
-        public abstract bool MustBeEqual { get; }
-        public abstract object Data1();
-        public abstract object Data2();
+        public abstract bool Expected { get; }
+        public abstract object Factory1();
+        public abstract object Factory2();
 
-        [TestMethod("DefaultEquality")]
+        [TestMethod("Equal objects using the default object equality method")]
         public void EqualsTest1()
         {
-            var data1 = Data1();
-            var data2 = Data2();
-            if (MustBeEqual)
+            var data1 = Factory1();
+            var data2 = Factory2();
+            if (Expected)
             {
                 Assert.AreEqual(data1, data2, $"data1:{data1} and data2:{data2} should be equal");
             }
             else
             {
                 Assert.AreNotEqual(data1, data2, $"data1:{data1} and data2:{data2} should be not equal");
-            }
-        }
-
-        [TestMethod("Equal<T>(T other)")]
-        public void EqualsTest3()
-        {
-            var data1 = Data1();
-            var data2 = Data2();
-            if (MustBeEqual)
-            {
-                Assert.IsTrue(data1.Equals(data2), $"data1:{data1} and data2:{data2} should be equal");
-            }
-            else
-            {
-                Assert.IsFalse(data1.Equals(data2), $"data1:{data1} and data2:{data2} should be not equal");
             }
         }
     }
@@ -46,12 +31,12 @@ namespace Tests
         public abstract bool EqualsOperator(object value1, object value2);
         public abstract bool NotEqualsOperator(object value1, object value2);
 
-        [TestMethod("Using Equality operator")]
+        [TestMethod("Equal objects using the equality operator")]
         public void EqualsTest2()
         {
-            var data1 = Data1();
-            var data2 = Data2();
-            if (MustBeEqual)
+            var data1 = Factory1();
+            var data2 = Factory2();
+            if (Expected)
             {
                 Assert.IsTrue(EqualsOperator(data1, data2), $"data1:{data1} and data2:{data2} should be equal");
             }

@@ -1,9 +1,7 @@
 ﻿using EMDD.KtEquatable.Core.Attributes;
-using EMDD.KtEquatable.Core.EqualityComparers;
 using EMDD.KtEquatable.Syntax;
 using EMDD.KtEquatable.Syntax.Property;
 using EMDD.KtEquatable.Syntax.Property.Base;
-using EMDD.KtEquatable.Syntax.Property.HasCustomComparer;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
