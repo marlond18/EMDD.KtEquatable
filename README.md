@@ -2,6 +2,7 @@
 
 &nbsp; ![Nuget](https://img.shields.io/nuget/v/EMDD.KtEquatable?style=flat-square)![Nuget](https://img.shields.io/nuget/dt/EMDD.KtEquatable?style=flat-square)
 
+&nbsp; [![.NET](https://github.com/marlond18/EMDD.KtEquatable/actions/workflows/dotnet.yml/badge.svg)](https://github.com/marlond18/EMDD.KtEquatable/actions/workflows/dotnet.yml)
 &nbsp; 
 
 # EMDD.KtEquatable
