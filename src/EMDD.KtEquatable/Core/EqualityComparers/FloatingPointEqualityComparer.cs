@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace EMDD.KtEquatable.Core.EqualityComparers
 {
-    public class FloatingPointEqualityComparer : IEqualityComparer<double>
+    public class FloatingPointEqualityComparer : IEqualityComparer<double?>
     {
         private readonly int precision;
 
@@ -11,14 +12,16 @@ namespace EMDD.KtEquatable.Core.EqualityComparers
             this.precision = precision;
         }
 
-        public bool Equals(double x, double y)
+        public bool Equals(double? x, double? y)
         {
-            return x.NearEquals(y, precision);
+            if (ReferenceEquals(x, y)) return true;
+            if (x is null || y is null) return false;
+            return x.Value.NearEquals(y.Value, precision);
         }
 
-        public int GetHashCode(double obj)
+        public int GetHashCode(double? obj)
         {
-            return obj.GetDoubleHashCode(precision);
+            return obj is null? obj.GetHashCode(): obj.Value.GetDoubleHashCode(precision);
         }
     }
 }
