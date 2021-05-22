@@ -2,7 +2,7 @@
 
 &nbsp;
 
-&nbsp; [![Nuget](https://img.shields.io/nuget/v/EMDD.KtEquatable)](https://www.nuget.org/packages/EMDD.KtEquatable/)[![Nuget](https://img.shields.io/nuget/dt/EMDD.KtEquatable)](https://www.nuget.org/stats/packages/EMDD.KtEquatable?groupby=Version&groupby=ClientName&groupby=ClientVersion)[![.NET](https://github.com/marlond18/EMDD.KtEquatable/actions/workflows/dotnet.yml/badge.svg)](https://github.com/marlond18/EMDD.KtEquatable/actions/workflows/dotnet.yml)
+&nbsp; [![Nuget](https://img.shields.io/nuget/v/EMDD.KtEquatable)](https://www.nuget.org/packages/EMDD.KtEquatable/)[![Nuget](https://img.shields.io/nuget/dt/EMDD.KtEquatable)](https://www.nuget.org/stats/packages/EMDD.KtEquatable?groupby=Version&groupby=ClientName&groupby=ClientVersion)[![.NET](https://github.com/marlond18/EMDD.KtEquatable/actions/workflows/runTest.yml/badge.svg)](https://github.com/marlond18/EMDD.KtEquatable/actions/workflows/runTest.yml)
 &nbsp; 
 
 # EMDD.KtEquatable
