@@ -228,7 +228,7 @@ namespace KtEquatable.Unit.Tests
             }
             public string PropToString()
             {
-                var attsString = attributes is null || attributes.Length == 0 ? "" : $"\t\t{string.Join("\r\n\t\t", attributes.Select(a => $"[{a}]"))}\n";
+                var attsString = attributes is null || attributes.Length == 0 ? "" : $"\t\t{string.Join($"{System.Environment.NewLine}\t\t", attributes.Select(a => $"[{a}]"))}\n";
                 return $"{attsString}\t\t{typeName} {propName} {{ get; set; }}";
             }
             public override string ToString()

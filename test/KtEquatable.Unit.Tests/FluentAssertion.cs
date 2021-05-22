@@ -51,6 +51,8 @@ namespace KtEquatable.Unit.Tests
             Assert.AreEqual(diagnostics.Length, 0);
         }
 
+        private static readonly string Nl = System.Environment.NewLine;
+
         public void IsDiagnosedWith(TypeInfo<IPropertySymbol> diagTypeInfo)
         {
             var (id, title, _, severity) = diagTypeInfo(null);
@@ -62,41 +64,41 @@ namespace KtEquatable.Unit.Tests
 
         public void HasEqualsOperatorFor(string propType)
         {
-            string eqOp = $"\t\tpublic static bool operator ==({propType}? left, {propType}? right) =>\r\n\t\t\tEqualityComparer<{propType}>.Default.Equals(left, right);";
+            string eqOp = $"\t\tpublic static bool operator ==({propType}? left, {propType}? right) =>{Nl}\t\t\tEqualityComparer<{propType}>.Default.Equals(left, right);";
             Assert.IsTrue(o.Contains(eqOp), $"Generated does not contain\n{eqOp}.\n{o}");
         }
 
         public void HasPartialClassHeaderFor(string s)
         {
-            Assert.IsTrue(o.Contains($"\r\n{{\r\n\tpartial class {s} : IEquatable<{s}>\r\n\t"), $"class {s} is not marked as partial properly.");
+            Assert.IsTrue(o.Contains($"{Nl}{{{Nl}\tpartial class {s} : IEquatable<{s}>{Nl}\t"), $"class {s} is not marked as partial properly.");
         }
 
         public void HasPartialRecordHeaderFor(string s)
         {
-            Assert.IsTrue(o.Contains($"\r\n{{\r\n\tpartial record {s}\r\n\t"), $"record {s} is not marked as partial properly.");
+            Assert.IsTrue(o.Contains($"{Nl}{{{Nl}\tpartial record {s}{Nl}\t"), $"record {s} is not marked as partial properly.");
         }
 
         public void HasCorrectUsingStatements()
         {
-            Assert.IsTrue(o.Contains("using System;\r\nusing System.Collections.Generic;\r\nusing System.CodeDom.Compiler;\r\nusing EMDD.KtEquatable.Core.EqualityComparers;\r\nnamespace Test\r\n"), "wrong using statements.");
+            Assert.IsTrue(o.Contains($"using System;{Nl}using System.Collections.Generic;{Nl}using System.CodeDom.Compiler;{Nl}using EMDD.KtEquatable.Core.EqualityComparers;{Nl}namespace Test{Nl}"), "wrong using statements.");
         }
 
         public void HasNullableSyntax()
         {
-            Assert.IsTrue(o.Contains("\r\n#nullable restore\r\n"), "nullable restore is not present.");
-            Assert.IsTrue(o.Contains("\r\n#nullable enable\r\n"), "nullable enable is not present.");
+            Assert.IsTrue(o.Contains("{Nl}#nullable restore{Nl}"), "nullable restore is not present.");
+            Assert.IsTrue(o.Contains("{Nl}#nullable enable{Nl}"), "nullable enable is not present.");
         }
 
         public void HasEqualityComparerFor(string p, string comparer)
         {
-            Assert.IsTrue(o.Contains($"\r\n\t\t\t\t&& {comparer}.Equals({p}!, other.{p}!);"), $"{p} was not compared using {comparer} in the equals method.");
-            Assert.IsTrue(o.Contains($"\r\n\t\t\thashCode.Add(this.{p}!, {comparer});\r\n\t\t\t"), $"No hashcode added for {p} using {comparer}.");
+            Assert.IsTrue(o.Contains($"{Nl}\t\t\t\t&& {comparer}.Equals({p}!, other.{p}!);"), $"{p} was not compared using {comparer} in the equals method.");
+            Assert.IsTrue(o.Contains($"{Nl}\t\t\thashCode.Add(this.{p}!, {comparer});{Nl}\t\t\t"), $"No hashcode added for {p} using {comparer}.");
         }
 
         public void IgnoresEqualityComparerFor(string p, string comparer)
         {
-            Assert.IsTrue(!o.Contains($"\r\n\t\t\t\t&& {comparer}.Equals({p}!, other.{p}!);"), $"{p} was not compared using {comparer} in the equals method.");
-            Assert.IsTrue(!o.Contains($"\r\n\t\t\thashCode.Add(this.{p}!, {comparer});\r\n\t\t\t"), $"No hashcode added for {p} using {comparer}.");
+            Assert.IsTrue(!o.Contains($"{Nl}\t\t\t\t&& {comparer}.Equals({p}!, other.{p}!);"), $"{p} was not compared using {comparer} in the equals method.");
+            Assert.IsTrue(!o.Contains($"{Nl}\t\t\thashCode.Add(this.{p}!, {comparer});{Nl}\t\t\t"), $"No hashcode added for {p} using {comparer}.");
         }
     }
 

@@ -153,7 +153,8 @@ namespace EMDD.KtEquatable.Core
                                 return (property, defaultComp, DictionaryCantBeSetType);
                             default:
                                 var valType = args[1];
-                                var valTypeName = valType.ToNullableFullyQualifiedFormat();                             var keyType = args[0];
+                                var valTypeName = valType.ToNullableFullyQualifiedFormat();
+                                var keyType = args[0];
                                 var keyTypeName = keyType.ToNullableFullyQualifiedFormat();
                                 var (diag, str) = IndividualAtt(property, valType);
                                 return (property, new PropertyWithComparerEquality
