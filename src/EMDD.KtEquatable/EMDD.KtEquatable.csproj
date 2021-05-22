@@ -33,7 +33,6 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <None Include="..\..\.editorconfig" Link=".editorconfig" />
     <None Include="Images\emd2.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
