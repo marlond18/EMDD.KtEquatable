@@ -1,8 +1,9 @@
 <img align="left" src="src/EMDD.KtEquatable/Images/emd2.png" width="120" height="50">
 
-&nbsp; ![Nuget](https://img.shields.io/nuget/v/EMDD.KtEquatable?style=flat-square)![Nuget](https://img.shields.io/nuget/dt/EMDD.KtEquatable?style=flat-square)
+&nbsp;
 
-&nbsp; [![.NET](https://github.com/marlond18/EMDD.KtEquatable/actions/workflows/dotnet.yml/badge.svg)](https://github.com/marlond18/EMDD.KtEquatable/actions/workflows/dotnet.yml)
+&nbsp; ![Nuget](https://img.shields.io/nuget/v/EMDD.KtEquatable?style=flat-square)![Nuget](https://img.shields.io/nuget/dt/EMDD.KtEquatable?style=flat-square)
+[![.NET](https://github.com/marlond18/EMDD.KtEquatable/actions/workflows/dotnet.yml/badge.svg?style=flat-square)](https://github.com/marlond18/EMDD.KtEquatable/actions/workflows/dotnet.yml)
 &nbsp; 
 
 # EMDD.KtEquatable
