@@ -51,7 +51,7 @@ namespace KtEquatable.Unit.Tests
             Assert.AreEqual(diagnostics.Length, 0);
         }
 
-        private static readonly string Nl = System.Environment.NewLine;
+        private static readonly string Nl = Environment.NewLine;
 
         public void IsDiagnosedWith(TypeInfo<IPropertySymbol> diagTypeInfo)
         {
@@ -85,8 +85,8 @@ namespace KtEquatable.Unit.Tests
 
         public void HasNullableSyntax()
         {
-            Assert.IsTrue(o.Contains("{Nl}#nullable restore{Nl}"), "nullable restore is not present.");
-            Assert.IsTrue(o.Contains("{Nl}#nullable enable{Nl}"), "nullable enable is not present.");
+            Assert.IsTrue(o.Contains($"{Nl}#nullable restore{Nl}"), "nullable restore is not present.");
+            Assert.IsTrue(o.Contains($"{Nl}#nullable enable{Nl}"), "nullable enable is not present.");
         }
 
         public void HasEqualityComparerFor(string p, string comparer)

@@ -260,8 +260,9 @@ namespace KtEquatable.Unit.Tests
             driver.RunGeneratorsAndUpdateCompilation(compilation, out var outputCompilation, out var diagnostics);
 
             var trees = outputCompilation.SyntaxTrees.ToList();
-
-            return (diagnostics, trees.Count != originalTreeCount ? trees[^1].ToString() : string.Empty);
+            var strResult = trees.Count != originalTreeCount ? trees[^1].ToString() : string.Empty;
+            //strResult = strResult.Replace("\r\n", Environment.NewLine);
+            return (diagnostics, strResult);
         }
 
         public delegate string GetNameDelegate(Type type);
