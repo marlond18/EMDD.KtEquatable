@@ -1,6 +1,8 @@
 ﻿
 using EMDD.KtEquatable.Core.Attributes;
 
+using KtEquatable.Tests;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System;

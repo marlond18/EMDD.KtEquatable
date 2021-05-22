@@ -5,6 +5,7 @@ using EMDD.KtEquatable.Core.Attributes;
 using System;
 using EMDD.KtEquatable.Core.EqualityComparers;
 using System.Collections.Generic;
+using KtEquatable.Tests;
 
 namespace Tests.Classes
 {
