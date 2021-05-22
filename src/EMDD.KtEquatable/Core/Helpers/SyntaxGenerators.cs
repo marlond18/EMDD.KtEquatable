@@ -45,6 +45,7 @@ namespace EMDD.KtEquatable.Syntax
             }
             return false;
         }
+
         public static bool GetParamVal<T>(this AttributeData? at, string propName, out T? value)
         {
             value = default;
