@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static EMDD.KtEquatable.Core.DiagnosticData;
 using static KtEquatable.Unit.Tests.TestGeneratorHelper;
 using static KtEquatable.Unit.Tests.Assertions.AssertionHelpers;
+using System;
 
 namespace KtEquatable.Unit.Tests.Classes.EnumerableTests
 {
