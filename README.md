@@ -4,11 +4,10 @@
 
 &nbsp; [![Nuget](https://img.shields.io/nuget/v/EMDD.KtEquatable)](https://www.nuget.org/packages/EMDD.KtEquatable/)[![Nuget](https://img.shields.io/nuget/dt/EMDD.KtEquatable)](https://www.nuget.org/stats/packages/EMDD.KtEquatable?groupby=Version&groupby=ClientName&groupby=ClientVersion)[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/marlond18/EMDD.KtEquatable/RunTests)](https://github.com/marlond18/EMDD.KtEquatable/actions/workflows/runTest.yml)
 &nbsp; 
-
+----------------
 # EMDD.KtEquatable
 use of C# 9.0 Source Generator to AutoGenerate IEquatable&lt;T&gt; using attributes.
 
-----------------
 ## Requirements
 
 [Visual Studio 16.8](https://visualstudio.microsoft.com/vs) or greater
