@@ -7,11 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 
 using static EMDD.KtEquatable.Core.DiagnosticData;
+using static KtEquatable.Unit.Tests.Assertions.AssertionHelpers;
 using static KtEquatable.Unit.Tests.TestGeneratorHelper;
-using static KtEquatable.Unit.Tests.TestGeneratorHelper.SourceClass;
 using static KtEquatable.Unit.Tests.TestSyntaxHelper;
 
-namespace KtEquatable.Unit.Tests.Classes.TestDataSourceAttributes
+namespace KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class EnumerableRefDataSourceAttribute : BaseTestDataSourceAttribute
@@ -19,7 +19,7 @@ namespace KtEquatable.Unit.Tests.Classes.TestDataSourceAttributes
         public EnumerableOrderType OrderType { get; }
         protected readonly bool isClass;
 
-        public EnumerableRefDataSourceAttribute(EnumerableOrderType orderType, bool friendlyName, string className, string propName, bool isClass) : base(friendlyName, className, propName)
+        public EnumerableRefDataSourceAttribute(EnumerableOrderType orderType, bool friendlyName, string className, string propName, bool isClass, Type type) : base(friendlyName, className, propName, type)
         {
             OrderType = orderType;
             this.isClass = isClass;

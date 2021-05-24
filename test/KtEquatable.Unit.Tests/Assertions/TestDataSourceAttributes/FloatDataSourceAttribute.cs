@@ -8,10 +8,11 @@ using System.Linq;
 
 using static EMDD.KtEquatable.Core.DiagnosticData;
 using static KtEquatable.Unit.Tests.TestGeneratorHelper;
-using static KtEquatable.Unit.Tests.TestGeneratorHelper.SourceRecord;
+using static KtEquatable.Unit.Tests.Assertions.AssertionHelpers;
 using static KtEquatable.Unit.Tests.TestSyntaxHelper;
+using KtEquatable.Unit.Tests.Assertions;
 
-namespace KtEquatable.Unit.Tests.Records.TestDataSourceAttributes
+namespace KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class FloatDataSourceAttribute : BaseTestDataSourceAttribute
@@ -19,7 +20,7 @@ namespace KtEquatable.Unit.Tests.Records.TestDataSourceAttributes
         private readonly int precision;
         private readonly bool correctData;
 
-        public FloatDataSourceAttribute(int precision, bool friendlyName, string className, string propName, bool correctData) : base(friendlyName, className, propName)
+        public FloatDataSourceAttribute(int precision, bool friendlyName, string className, string propName, bool correctData, Type type) : base(friendlyName, className, propName, type)
         {
             this.precision = precision;
             this.correctData = correctData;

@@ -8,17 +8,18 @@ using System.Linq;
 
 using static EMDD.KtEquatable.Core.DiagnosticData;
 using static KtEquatable.Unit.Tests.TestGeneratorHelper;
-using static KtEquatable.Unit.Tests.TestGeneratorHelper.SourceClass;
+using static KtEquatable.Unit.Tests.Assertions.AssertionHelpers;
 using static KtEquatable.Unit.Tests.TestSyntaxHelper;
+using KtEquatable.Unit.Tests.Assertions;
 
-namespace KtEquatable.Unit.Tests.Classes.TestDataSourceAttributes
+namespace KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class RefDataSourceAttribute : BaseTestDataSourceAttribute
     {
         private readonly bool correctData;
 
-        public RefDataSourceAttribute(bool friendlyName, string className, string propName, bool correctData) : base(friendlyName, className, propName)
+        public RefDataSourceAttribute(bool friendlyName, string className, string propName, bool correctData, Type type) : base(friendlyName, className, propName, type)
         {
             this.correctData = correctData;
         }

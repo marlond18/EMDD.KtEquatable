@@ -1,12 +1,14 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using KtEquatable.Unit.Tests.Assertions;
+
+using Microsoft.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System.Collections.Generic;
 
 using static EMDD.KtEquatable.Core.DiagnosticData;
 using static KtEquatable.Unit.Tests.TestGeneratorHelper;
-using static KtEquatable.Unit.Tests.TestGeneratorHelper.SourceRecord;
 using static KtEquatable.Unit.Tests.TestSyntaxHelper;
+using static KtEquatable.Unit.Tests.Assertions.AssertionHelpers;
 
 namespace KtEquatable.Unit.Tests.Records.EnumerableTests
 {
@@ -20,7 +22,7 @@ namespace KtEquatable.Unit.Tests.Records.EnumerableTests
         [DynamicData(nameof(EnumerableDoubleNames), DynamicDataSourceType.Method)]
         public void EnumerableDouble(SourceRecord sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            var testIfGeneratedString = GetGeneratedOutputAssertion(sourceClass.ClassToString());
+            var testIfGeneratedString = GetGeneratedOutputAssertion(sourceClass);
             if (diagnostic is null)
             {
                 testIfGeneratedString.HasNoDiagnostics();
@@ -31,7 +33,7 @@ namespace KtEquatable.Unit.Tests.Records.EnumerableTests
             }
             testIfGeneratedString.HasNullableSyntax();
             testIfGeneratedString.HasCorrectUsingStatements();
-            testIfGeneratedString.HasPartialRecordHeaderFor(className);
+            testIfGeneratedString.HasPartialObjHeaderFor(className, sourceClass.InternalType, sourceClass.ImplementationOnGenCode);
             testIfGeneratedString.HasEqualityComparerFor(propName, comparerSyntax);
         }
 

@@ -1,5 +1,7 @@
 ﻿using EMDD.KtEquatable.Core.Attributes;
 
+using KtEquatable.Unit.Tests.Assertions;
+
 using Microsoft.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,10 +12,10 @@ using System.Reflection;
 
 using static EMDD.KtEquatable.Core.DiagnosticData;
 using static KtEquatable.Unit.Tests.TestGeneratorHelper;
-using static KtEquatable.Unit.Tests.TestGeneratorHelper.SourceRecord;
+using static KtEquatable.Unit.Tests.Assertions.AssertionHelpers;
 using static KtEquatable.Unit.Tests.TestSyntaxHelper;
 
-namespace KtEquatable.Unit.Tests.Records.TestDataSourceAttributes
+namespace KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class EnumerableIgnoredDataSourceAttribute : BaseTestDataSourceAttribute
@@ -21,7 +23,7 @@ namespace KtEquatable.Unit.Tests.Records.TestDataSourceAttributes
         public EnumerableOrderType OrderType { get; }
         protected readonly bool isClass;
 
-        public EnumerableIgnoredDataSourceAttribute(EnumerableOrderType orderType, bool friendlyName, string className, string propName, bool isClass) : base(friendlyName, className, propName)
+        public EnumerableIgnoredDataSourceAttribute( EnumerableOrderType orderType, bool friendlyName, string className, string propName, bool isClass, Type type) : base(friendlyName, className, propName, type)
         {
             OrderType = orderType;
             this.isClass = isClass;
@@ -45,11 +47,11 @@ namespace KtEquatable.Unit.Tests.Records.TestDataSourceAttributes
             };
         }
 
-        protected override SourceRecord GetSourceClass(GetNameDelegate getnameDelegate, string[] atts, Type type)
+        protected override SourceProperty[] GetSourceProp(string typeName, string[] atts)
         {
             var otherProp = new SourceProperty("int", "OtherProp2", null);
-            var ignoredProp = new SourceProperty(getnameDelegate(type), propName, atts);
-            return new SourceRecord(className, otherProp, ignoredProp);
+            var ignoredProp = new SourceProperty(typeName, propName, atts);
+            return new[] { otherProp , ignoredProp };
         }
 
         protected override IEnumerable<Type> GetTypes()

@@ -1,4 +1,5 @@
-﻿
+﻿using KtEquatable.Unit.Tests.Assertions;
+
 using Microsoft.CodeAnalysis;
 
 using System;
@@ -9,7 +10,7 @@ using static EMDD.KtEquatable.Core.DiagnosticData;
 using static KtEquatable.Unit.Tests.TestGeneratorHelper;
 using static KtEquatable.Unit.Tests.TestSyntaxHelper;
 
-namespace KtEquatable.Unit.Tests.Records.TestDataSourceAttributes
+namespace KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class BasicDataSourceAttribute : BaseTestDataSourceAttribute
@@ -24,7 +25,7 @@ namespace KtEquatable.Unit.Tests.Records.TestDataSourceAttributes
 
         private readonly DataTypeGroup dataTypeGroup;
 
-        public BasicDataSourceAttribute(DataTypeGroup dataTypeGroup, bool friendlyName, string className, string propName) : base(friendlyName, className, propName)
+        public BasicDataSourceAttribute(DataTypeGroup dataTypeGroup, bool friendlyName, string className, string propName, Type type) : base(friendlyName, className, propName, type)
         {
             this.dataTypeGroup = dataTypeGroup;
         }

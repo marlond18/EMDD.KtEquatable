@@ -1,11 +1,12 @@
 ﻿
-using KtEquatable.Unit.Tests.Classes.TestDataSourceAttributes;
+using KtEquatable.Unit.Tests.Assertions;
+using KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using static EMDD.KtEquatable.Core.DiagnosticData;
-using static KtEquatable.Unit.Tests.TestGeneratorHelper;
+using static KtEquatable.Unit.Tests.Assertions.AssertionHelpers;
 
 namespace KtEquatable.Unit.Tests.Classes
 {
@@ -16,31 +17,31 @@ namespace KtEquatable.Unit.Tests.Classes
 		private const string propName = "P2";
 
 		[DataTestMethod]
-		[RefDataSource(true, className, propName, true)]
-		public void CorrectDataFriendlyNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+		[RefDataSource(true, className, propName, true, typeof(SourceClass))]
+		public void CorrectDataFriendlyNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
 		{
-			AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+			sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, false, false);
 		}
 
 		[DataTestMethod]
-		[RefDataSource(false, className, propName, true)]
-		public void CorrectDataCompleteNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+		[RefDataSource(false, className, propName, true, typeof(SourceClass))]
+		public void CorrectDataCompleteNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
 		{
-			AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+			sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, false, false);
 		}
 
 		[DataTestMethod]
-		[RefDataSource(true, className, propName, false)]
-		public void WrongDataFriendlyNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+		[RefDataSource(true, className, propName, false, typeof(SourceClass))]
+		public void WrongDataFriendlyNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
 		{
-			AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+			sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, false, false);
 		}
 
 		[DataTestMethod]
-		[RefDataSource(false, className, propName, false)]
-		public void WrongDataCompleteNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+		[RefDataSource(false, className, propName, false, typeof(SourceClass))]
+		public void WrongDataCompleteNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
 		{
-			AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+			sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, false, false);
 		}
 	}
 }

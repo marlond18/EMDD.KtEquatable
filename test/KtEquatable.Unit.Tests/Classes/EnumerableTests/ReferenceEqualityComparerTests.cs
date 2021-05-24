@@ -1,7 +1,8 @@
 ﻿
 using EMDD.KtEquatable.Core.Attributes;
 
-using KtEquatable.Unit.Tests.Classes.TestDataSourceAttributes;
+using KtEquatable.Unit.Tests.Assertions;
+using KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -16,173 +17,175 @@ namespace KtEquatable.Unit.Tests.Classes.EnumerableTests
     {
         private const string className = "Data";
         private const string propName = "P1";
+        private const bool skipEqOp = false;
+        private const bool forIgnoreAtt = false;
 
         [DataTestMethod]
-        [EnumerableRefDataSource(EnumerableOrderType.Set, true, className, propName,false)]
-        public void SetNonClassTypeFriendlyNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [EnumerableRefDataSource(EnumerableOrderType.Set, true, className, propName,false, typeof(SourceClass))]
+        public void SetNonClassTypeFriendlyNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [EnumerableRefDataSource(EnumerableOrderType.Ordered, true, className, propName, false)]
-        public void OrderedNonClassTypeFriendlyNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [EnumerableRefDataSource(EnumerableOrderType.Set, true, className, propName,false, typeof(SourceClass))]
+        public void OrderedNonClassTypeFriendlyNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [EnumerableRefDataSource(EnumerableOrderType.Unordered, true, className, propName, false)]
-        public void UnorderedNonClassTypeFriendlyNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [EnumerableRefDataSource(EnumerableOrderType.Unordered, true, className, propName, false, typeof(SourceClass))]
+        public void UnorderedNonClassTypeFriendlyNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [EnumerableRefDataSource(EnumerableOrderType.Set,false, className, propName, false)]
-        public void SetNonClassTypeCompleteNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [EnumerableRefDataSource(EnumerableOrderType.Set,false, className, propName, false, typeof(SourceClass))]
+        public void SetNonClassTypeCompleteNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [EnumerableRefDataSource(EnumerableOrderType.Ordered, false, className, propName, false)]
-        public void OrderedNonClassTypeCompleteNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [EnumerableRefDataSource(EnumerableOrderType.Ordered, false, className, propName, false, typeof(SourceClass))]
+        public void OrderedNonClassTypeCompleteNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [EnumerableRefDataSource(EnumerableOrderType.Unordered, false, className, propName, false)]
-        public void UnorderedNonClassTypeCompleteNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [EnumerableRefDataSource(EnumerableOrderType.Unordered, false, className, propName, false, typeof(SourceClass))]
+        public void UnorderedNonClassTypeCompleteNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [EnumerableRefDataSource(EnumerableOrderType.Set, true, className, propName, true)]
-        public void SetClassTypeFriendlyNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [EnumerableRefDataSource(EnumerableOrderType.Set, true, className, propName, true, typeof(SourceClass))]
+        public void SetClassTypeFriendlyNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [EnumerableRefDataSource(EnumerableOrderType.Ordered, true, className, propName, true)]
-        public void OrderedClassTypeFriendlyNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [EnumerableRefDataSource(EnumerableOrderType.Ordered, true, className, propName, true, typeof(SourceClass))]
+        public void OrderedClassTypeFriendlyNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [EnumerableRefDataSource(EnumerableOrderType.Unordered, true, className, propName, true)]
-        public void UnorderedClassTypeFriendlyNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [EnumerableRefDataSource(EnumerableOrderType.Unordered, true, className, propName, true, typeof(SourceClass))]
+        public void UnorderedClassTypeFriendlyNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [EnumerableRefDataSource(EnumerableOrderType.Set, false, className, propName, true)]
-        public void SetClassTypeCompleteNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [EnumerableRefDataSource(EnumerableOrderType.Set, false, className, propName, true, typeof(SourceClass))]
+        public void SetClassTypeCompleteNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [EnumerableRefDataSource(EnumerableOrderType.Ordered, false, className, propName, true)]
-        public void OrderedClassTypeCompleteNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [EnumerableRefDataSource(EnumerableOrderType.Ordered, false, className, propName, true, typeof(SourceClass))]
+        public void OrderedClassTypeCompleteNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [EnumerableRefDataSource(EnumerableOrderType.Unordered, false, className, propName, true)]
-        public void UnorderedClassTypeCompleteNameTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [EnumerableRefDataSource(EnumerableOrderType.Unordered, false, className, propName, true, typeof(SourceClass))]
+        public void UnorderedClassTypeCompleteNameTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [DictionaryRefDataSource( EnumerableOrderType.Set,true, className,propName,false )]
-        public void SetDictionaryNonClassFriendlyNameTypeTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [DictionaryRefDataSource( EnumerableOrderType.Set,true, className,propName,false, typeof(SourceClass))]
+        public void SetDictionaryNonClassFriendlyNameTypeTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [DictionaryRefDataSource(EnumerableOrderType.Ordered, true, className, propName, false)]
-        public void OrderedDictionaryNonClassFriendlyNameTypeTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [DictionaryRefDataSource(EnumerableOrderType.Ordered, true, className, propName, false, typeof(SourceClass))]
+        public void OrderedDictionaryNonClassFriendlyNameTypeTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [DictionaryRefDataSource(EnumerableOrderType.Unordered, true, className, propName, false)]
-        public void UnorderedDictionaryNonClassFriendlyNameTypeTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [DictionaryRefDataSource(EnumerableOrderType.Unordered, true, className, propName, false, typeof(SourceClass))]
+        public void UnorderedDictionaryNonClassFriendlyNameTypeTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [DictionaryRefDataSource(EnumerableOrderType.Set, true, className, propName, true)]
-        public void SetDictionaryClassFriendlyNameTypeTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [DictionaryRefDataSource(EnumerableOrderType.Set, true, className, propName, true, typeof(SourceClass))]
+        public void SetDictionaryClassFriendlyNameTypeTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [DictionaryRefDataSource(EnumerableOrderType.Ordered, true, className, propName, true)]
-        public void OrderedDictionaryClassFriendlyNameTypeTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [DictionaryRefDataSource(EnumerableOrderType.Ordered, true, className, propName, true, typeof(SourceClass))]
+        public void OrderedDictionaryClassFriendlyNameTypeTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [DictionaryRefDataSource(EnumerableOrderType.Unordered, true, className, propName, true)]
-        public void UnorderedDictionaryClassFriendlyNameTypeTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [DictionaryRefDataSource(EnumerableOrderType.Unordered, true, className, propName, true, typeof(SourceClass))]
+        public void UnorderedDictionaryClassFriendlyNameTypeTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [DictionaryRefDataSource(EnumerableOrderType.Set, false, className, propName, false)]
-        public void SetDictionaryNonClassCompleteNameTypeTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [DictionaryRefDataSource(EnumerableOrderType.Set, false, className, propName, false, typeof(SourceClass))]
+        public void SetDictionaryNonClassCompleteNameTypeTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [DictionaryRefDataSource(EnumerableOrderType.Ordered, false, className, propName, false)]
-        public void OrderedDictionaryNonClassCompleteNameTypeTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [DictionaryRefDataSource(EnumerableOrderType.Ordered, false, className, propName, false, typeof(SourceClass))]
+        public void OrderedDictionaryNonClassCompleteNameTypeTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [DictionaryRefDataSource(EnumerableOrderType.Unordered, false, className, propName, false)]
-        public void UnorderedDictionaryNonClassCompleteNameTypeTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [DictionaryRefDataSource(EnumerableOrderType.Unordered, false, className, propName, false, typeof(SourceClass))]
+        public void UnorderedDictionaryNonClassCompleteNameTypeTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [DictionaryRefDataSource(EnumerableOrderType.Set, false, className, propName, true)]
-        public void SetDictionaryClassCompleteNameTypeTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [DictionaryRefDataSource(EnumerableOrderType.Set, false, className, propName, true, typeof(SourceClass))]
+        public void SetDictionaryClassCompleteNameTypeTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [DictionaryRefDataSource(EnumerableOrderType.Ordered, false, className, propName, true)]
-        public void OrderedDictionaryClassCompleteNameTypeTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [DictionaryRefDataSource(EnumerableOrderType.Ordered, false, className, propName, true, typeof(SourceClass))]
+        public void OrderedDictionaryClassCompleteNameTypeTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [DictionaryRefDataSource(EnumerableOrderType.Unordered, false, className, propName, true)]
-        public void UnorderedDictionaryClassCompleteNameTypeTest(SourceClass sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
+        [DictionaryRefDataSource(EnumerableOrderType.Unordered, false, className, propName, true, typeof(SourceClass))]
+        public void UnorderedDictionaryClassCompleteNameTypeTest(ISyntaxSource sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            AssertAGeneratedCode(sourceClass, comparerSyntax, diagnostic, className, propName);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
         }
     }
 }

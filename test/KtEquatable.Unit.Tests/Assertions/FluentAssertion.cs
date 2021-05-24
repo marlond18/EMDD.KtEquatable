@@ -1,18 +1,13 @@
-﻿using EMDD.KtEquatable;
-using EMDD.KtEquatable.Core;
-
+﻿
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 
 using static EMDD.KtEquatable.Core.DiagnosticData;
 
-namespace KtEquatable.Unit.Tests
+namespace KtEquatable.Unit.Tests.Assertions
 {
     internal abstract class IfBase<T>
     {
@@ -43,7 +38,7 @@ namespace KtEquatable.Unit.Tests
 
         public IfGeneratedString(ImmutableArray<Diagnostic> diag, string o) : base(o)
         {
-            this.diagnostics = diag;
+            diagnostics = diag;
         }
 
         public void HasNoDiagnostics()
@@ -68,14 +63,9 @@ namespace KtEquatable.Unit.Tests
             Assert.IsTrue(o.Contains(eqOp), $"Generated does not contain\n{eqOp}.\n{o}");
         }
 
-        public void HasPartialClassHeaderFor(string s)
+        public void HasPartialObjHeaderFor(string s, string typeName, string implementation)
         {
-            Assert.IsTrue(o.Contains($"{Nl}{{{Nl}\tpartial class {s} : IEquatable<{s}>{Nl}\t"), $"class {s} is not marked as partial properly.");
-        }
-
-        public void HasPartialRecordHeaderFor(string s)
-        {
-            Assert.IsTrue(o.Contains($"{Nl}{{{Nl}\tpartial record {s}{Nl}\t"), $"record {s} is not marked as partial properly.");
+            Assert.IsTrue(o.Contains($"{Nl}{{{Nl}\tpartial {typeName} {s}{implementation}{Nl}\t"), $"{typeName} {s} is not marked as partial properly.");
         }
 
         public void HasCorrectUsingStatements()

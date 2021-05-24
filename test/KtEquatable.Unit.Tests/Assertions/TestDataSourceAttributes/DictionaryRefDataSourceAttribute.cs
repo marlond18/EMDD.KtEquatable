@@ -1,19 +1,17 @@
 ﻿using EMDD.KtEquatable.Core.Attributes;
 
 using Microsoft.CodeAnalysis;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 using static EMDD.KtEquatable.Core.DiagnosticData;
+using static KtEquatable.Unit.Tests.Assertions.AssertionHelpers;
 using static KtEquatable.Unit.Tests.TestGeneratorHelper;
-using static KtEquatable.Unit.Tests.TestGeneratorHelper.SourceClass;
 using static KtEquatable.Unit.Tests.TestSyntaxHelper;
 
-namespace KtEquatable.Unit.Tests.Classes.TestDataSourceAttributes
+namespace KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class DictionaryRefDataSourceAttribute : BaseTestDataSourceAttribute
@@ -21,7 +19,7 @@ namespace KtEquatable.Unit.Tests.Classes.TestDataSourceAttributes
         public EnumerableOrderType OrderType { get; }
         protected readonly bool isClass;
 
-        public DictionaryRefDataSourceAttribute(EnumerableOrderType orderType, bool friendlyName, string className, string propName, bool isClass) : base(friendlyName, className, propName)
+        public DictionaryRefDataSourceAttribute(EnumerableOrderType orderType, bool friendlyName, string className, string propName, bool isClass, Type type) : base(friendlyName, className, propName, type)
         {
             OrderType = orderType;
             this.isClass = isClass;
