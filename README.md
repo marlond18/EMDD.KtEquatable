@@ -23,10 +23,11 @@ https://www.nuget.org/packages/EMDD.KtEquatable/
 ## Breaking Changes and Updates 
 ### (3.0.0 to 3.1.0)
 - added support for struct types
+
 see [History of Breaking Changes and Updates](https://github.com/marlond18/EMDD.KtEquatable/blob/main/History%20of%20Breaking%20Changes%20and%20Updates.md)
 
 ## Usage
-The source generator can be used by marking the target class/record with ```[Equatable]``` Attribute. The properties can also be marked with specific attributes specify the equality comparison method to be used.
+The source generator can be used by marking the target class/record/struct with ```[Equatable]``` Attribute. The property members can also be marked with specific attributes to dictate the equality comparison method to be used.
 The sample below shows an `EmployeeInfo` class marked with the specific Attributes.
 ```c#
 using EMDD.KtEquatable.Core.Attributes;
