@@ -1,8 +1,5 @@
-﻿using EMDD.KtEquatable.Syntax.Property;
-
+﻿
 using Microsoft.CodeAnalysis;
-
-using System.Collections.Generic;
 
 namespace EMDD.KtEquatable.Syntax
 {
