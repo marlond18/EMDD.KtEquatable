@@ -1,0 +1,567 @@
+[33mcommit 272530e61ee4e038355d7918a4d2bd8e549a9ebf[m[33m ([m[1;36mHEAD -> [m[1;32mCreateStruct[m[33m, [m[1;32mmain[m[33m)[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Tue May 25 18:04:58 2021 +0800
+
+    Testing Toggle edits
+
+[33mcommit 03e348e8d5c0ef763b575316ac67c7499a969ab9[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Tue May 25 18:00:58 2021 +0800
+
+    Changed DictionaryRefDataSourceAttribute parameter
+
+[33mcommit 6209fb5ef0232f7aaa74aa1b63c6583a88fb1bbe[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Tue May 25 17:47:34 2021 +0800
+
+    Same changes as previous commit
+
+[33mcommit 0766356e5b41e39d4b2fc63c17cebcd7520efa06[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Tue May 25 17:42:23 2021 +0800
+
+    Changed className to objName
+
+[33mcommit 046fc4b6be934dd42eef83decdd22479f028fe5f[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Tue May 25 17:03:15 2021 +0800
+
+    Changed Name
+
+[33mcommit 67918cd8841c1ef52dd75f3cb86c4f17afa03452[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Mon May 24 20:45:08 2021 +0800
+
+    changed in the yml file
+
+[33mcommit 6cd85ce76d26704a3f7635947698fc8b09a05dfa[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Mon May 24 18:20:15 2021 +0800
+
+    Update runTest.yml
+
+[33mcommit 935965da3799be950d24558063b7e040d238c91d[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Mon May 24 18:15:33 2021 +0800
+
+    Update runTest.yml
+
+[33mcommit 3570c2f24b23de6107185b97e3c7ba7c7d23c997[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Mon May 24 16:45:41 2021 +0800
+
+    Update runTest.yml
+
+[33mcommit c19adfd3eb88b9f3d9704c5af0e4cc760125be05[m
+Merge: 5e1cef5 1e9f310
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Mon May 24 16:43:02 2021 +0800
+
+    Merge branch 'main' of https://github.com/marlond18/EMDD.KtEquatable into main
+
+[33mcommit 5e1cef5c5d5740996887529df914a9f453cc7694[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Mon May 24 16:41:55 2021 +0800
+
+    falls commit
+
+[33mcommit 1e9f31060653c13a8a4d4a17513a59ec4fac828c[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Mon May 24 16:25:26 2021 +0800
+
+    Update runTest.yml
+
+[33mcommit 1ae1d668b129692be4e609985b3a67493960baba[m
+Merge: 5621926 d58f029
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Mon May 24 16:18:04 2021 +0800
+
+    Merge branch 'main' of https://github.com/marlond18/EMDD.KtEquatable into main
+
+[33mcommit 562192658b84755acaf65322e3e2d1d57a7445c5[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Mon May 24 16:17:40 2021 +0800
+
+    spaces
+
+[33mcommit d58f029db93f03e8d8706ef835ac6f522e011650[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Mon May 24 16:01:41 2021 +0800
+
+    Update runTest.yml
+
+[33mcommit a237e2b46722220aa6cf34d86ce75c83f4030d55[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Mon May 24 16:00:15 2021 +0800
+
+    Update README.md
+
+[33mcommit fced98e4492e797ef8debd8257f5959b5ee7b4f4[m[33m ([m[1;33mtag: v3.0.1-alpha[m[33m)[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Mon May 24 15:48:11 2021 +0800
+
+    Fixed Testing Flow
+
+[33mcommit 77e2b3b0dab641976b52e5d59fca99949cad307a[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sun May 23 07:01:18 2021 +0800
+
+    Update README.md
+
+[33mcommit 2a464873ca84bd6de10763393c0c78c3dbe1e900[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sun May 23 06:31:19 2021 +0800
+
+    Update README.md
+
+[33mcommit e041610c9619bdf7d888dded241913c0301d52ec[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 21:02:23 2021 +0800
+
+    Update and rename dotnet.yml to runTest.yml
+
+[33mcommit 7332a0877b9301970973e1c1f60e4701e6f2d603[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 20:10:03 2021 +0800
+
+    Update README.md
+
+[33mcommit 3cd50ec1b42f3d07494d473f385e017b8cf2afde[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 20:09:11 2021 +0800
+
+    Update README.md
+
+[33mcommit 02a0a70c73eb91e3d97e536e67b375190198ecc8[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 20:08:33 2021 +0800
+
+    Update README.md
+
+[33mcommit e2bb27ad11c0f6e3673476d9aacc879d69d6a84c[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 19:47:47 2021 +0800
+
+    Update README.md
+
+[33mcommit bea66bc7b8ed6503c06e7ef9361e4b1a573a86ce[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 19:42:36 2021 +0800
+
+    Update README.md
+
+[33mcommit e5a7e1eb851404f03f09507a12effd04a4f61c10[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 19:12:33 2021 +0800
+
+    Further modification on \r\n
+
+[33mcommit e4d49f85ece526c3a2d373d845eac22bf452b065[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 18:53:25 2021 +0800
+
+    replaced all \r\n string to System.Environment.NewLine
+
+[33mcommit 384fa183da41a79fcf50823c60e6f4b4d79f7270[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 18:32:08 2021 +0800
+
+    Fixed all testing errors
+
+[33mcommit e5575d687cb3ae46e58d7f8bb6971bf36e8febe2[m
+Merge: 6ab4ab0 814a830
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 18:23:12 2021 +0800
+
+    Merge branch 'main' of https://github.com/marlond18/EMDD.KtEquatable into main
+
+[33mcommit 6ab4ab0990ee671f78a7babc4201ba6c16f18a22[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 18:22:57 2021 +0800
+
+    removed external files
+
+[33mcommit 221e3211edee9370040dcf21ca10de0dad0fbbfd[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 18:22:31 2021 +0800
+
+    add all tests
+
+[33mcommit 814a830bdf7abb230dc8ca55c26723b0e2e851c3[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 18:11:34 2021 +0800
+
+    Create dotnet.yml
+
+[33mcommit b2102b19bb89f0723d97b5d63f493c62d3c451fd[m[33m ([m[1;31morigin/3.1.0[m[33m, [m[1;32m3.1.0[m[33m)[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 16:10:01 2021 +0800
+
+    newline
+
+[33mcommit 5ce36e847f079ac574347d2474d49cb5cded2e27[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 16:06:16 2021 +0800
+
+    edited readme
+
+[33mcommit 4d46e0a3c8a902968915371dbe823cda5be68234[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 15:10:38 2021 +0800
+
+    Added some files on the soln directory
+    - minor edit on the md files
+
+[33mcommit e21869603877b12d211799404460e2b058326fb0[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 15:09:51 2021 +0800
+
+    revert the edit back
+
+[33mcommit 37e2f15fb17bc9a30d9040749b76a8eda983ee77[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sat May 22 14:09:56 2021 +0800
+
+    Modified FloatingPointEqualityComparer to accept nullable double
+
+[33mcommit d8c138eb0a184b8066280337e9b3a5822f3d444c[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 19:50:55 2021 +0800
+
+    Changed the test solution directories
+
+[33mcommit 75dcb58f929bcba80c27bd461f65d385db6c751a[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 19:46:26 2021 +0800
+
+    removed Core entirely
+
+[33mcommit 64387450977deab127dd0dd4f1fec0ddea2dd2b6[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 19:40:40 2021 +0800
+
+    Update README.md
+
+[33mcommit 9b7f71b28128434ed1b3a23865990a2a87aa816a[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 19:40:25 2021 +0800
+
+    Update README.md
+
+[33mcommit b2a376958708d0f9256450d6fd3cfb0e82b181ba[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 19:39:49 2021 +0800
+
+    Update README.md
+
+[33mcommit 2fb17528a6d4ca22043490a0c1ccb1ddafe0a86f[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 19:39:14 2021 +0800
+
+    Update README.md
+
+[33mcommit 7797402a2a1d3c20c70613254f57d6d875ab60d4[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 19:38:36 2021 +0800
+
+    Update README.md
+
+[33mcommit eed13143b461cea7bc63acc14f222cd797af0a34[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 19:38:10 2021 +0800
+
+    Update README.md
+
+[33mcommit 32d100c908e36aa992ce5ca4f519487aca3ca4e6[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 19:37:47 2021 +0800
+
+    Update README.md
+
+[33mcommit 066f5a4d7f535b4857e54e8068313ffd36e37eca[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 19:35:10 2021 +0800
+
+    Update README.md
+
+[33mcommit b4819c5c767848988418925745054b183e9233f0[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 17:46:40 2021 +0800
+
+    Update Diagnostics.md
+
+[33mcommit 3f08b085ff79f5ac0125ee0ac2bca9cc2fd1d688[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 17:44:02 2021 +0800
+
+    Update README.md
+
+[33mcommit 1acec7e3dac9299b3b3eb65a2a0cc7df4369a7bc[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 17:37:33 2021 +0800
+
+    Update README.md
+
+[33mcommit ce577576ab8778f163353df50a449390dc1ef8a4[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 17:32:05 2021 +0800
+
+    Update History of Breaking Changes and Updates.md
+
+[33mcommit c3e91a98965187018080fc9230b284982042022a[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 17:31:17 2021 +0800
+
+    Update README.md
+
+[33mcommit a54f32bbcec9a1ef1ad4db971c764d6f9576e519[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 17:30:41 2021 +0800
+
+    Rename History of Breaking Changes and Updates to History of Breaking Changes and Updates.md
+
+[33mcommit 6d70be4434e09f609aebcee4f51ca95c9e8fbedb[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 17:29:30 2021 +0800
+
+    Update History of Breaking Changes and Updates
+
+[33mcommit f376f870d9a1d4dc3c18b6b98e5d89a38f41e14a[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 17:28:54 2021 +0800
+
+    Update README.md
+
+[33mcommit 379f796c418562efbb370e4e09474dc826b72bfa[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 17:15:34 2021 +0800
+
+    Update README.md
+
+[33mcommit c6f4cc69767e861dd1a8f138ceb6b961e03b6ab5[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 17:15:13 2021 +0800
+
+    Update README.md
+
+[33mcommit 361dc94037738b79191ce8b3b2fc58b6adbc73d0[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 17:14:05 2021 +0800
+
+    Rename Breaking Changes and Updates to History of Breaking Changes and Updates
+
+[33mcommit 706a941c247e3db0896c4cb9d010713d6525f0cb[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 17:12:18 2021 +0800
+
+    Create Breaking Changes and Updates
+
+[33mcommit 3ec224567311004218c8c333632c37e51ce8cfee[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 16:40:36 2021 +0800
+
+    Update README.md
+
+[33mcommit 198135e0bc3b7aeb767b5c067642f12bc2c8f4d5[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 16:34:13 2021 +0800
+
+    Update README.md
+
+[33mcommit c3ee8f877b93edeb1a7b88285e2577546a351db7[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 16:33:38 2021 +0800
+
+    Create Diagnostics.md
+
+[33mcommit 02ddc9e24fc8fc23e533bffb39aa0058bb562c43[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 16:27:11 2021 +0800
+
+    edits for packaging
+
+[33mcommit 24a371db4c3d95ab8f8ff121e38ca277a1cb5aa0[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 13:57:50 2021 +0800
+
+    Fixed Bug on enumerable Ref type test
+
+[33mcommit cf56e1d643cd4f45e373f9045d0a09e3d90dd7aa[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 13:18:30 2021 +0800
+
+    Added Unit Test. Moved the other Test Implementations to Integration Tests
+
+[33mcommit 22e25c395cd35a2e8c5d7af3aea9a89a2ed70241[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 13:17:26 2021 +0800
+
+    Excluded Core from sln
+
+[33mcommit f4fd9f6029fd42ba4361706de901dd4b659a3d9e[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 13:16:49 2021 +0800
+
+    Major Changes
+
+[33mcommit db07bef4c4d539c04266d21813d109deca9d4183[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 13:15:54 2021 +0800
+
+    Removed CoreHelperClass
+
+[33mcommit b81840e1bb8795634fe78b7ddd1b44325fccee41[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 13:15:34 2021 +0800
+
+    Added SummaryString Class
+
+[33mcommit 027494c8fb10c13a5df726b0745f5b6d94926a64[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 13:14:53 2021 +0800
+
+    TypeSymbolCollection to GeneratorWriter
+    Moved majority of the syntaxing from other places to GeneratorWriter
+
+[33mcommit cc3d240c67459deadb3f25d267edec6755f28f86[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 13:13:27 2021 +0800
+
+    Added core helpers
+
+[33mcommit 4916719755d86f6fb97c2c9617ffc97de098b6db[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Fri May 21 13:13:05 2021 +0800
+
+    Transferred from separate lib/proj
+
+[33mcommit 6d8b77925794bd2f96fbd3583b3a5b9587fe54ec[m
+Merge: d54f94d a8eab78
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sun May 9 01:45:58 2021 +0800
+
+    Merge branch 'main' of https://github.com/marlond18/EMDD.KtEquatable into main
+
+[33mcommit d54f94dedeaa393cb6edf188b47f88a6283b9d67[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Mon May 3 12:41:43 2021 +0800
+
+    Split Comparers to each file
+
+[33mcommit cec497d6a29e916b1779349a18b72c39abbdf082[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Mon May 3 12:41:19 2021 +0800
+
+    Added
+
+[33mcommit a8eab7864ad5507725b2e44ea83b743d984dedba[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Mon May 3 12:07:01 2021 +0800
+
+    Update README.md
+
+[33mcommit 42dcc6f3eb8b3d2b0dd99493afe514de3d4bdfbf[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Mon May 3 12:02:37 2021 +0800
+
+    Update README.md
+
+[33mcommit ae8a941c614866fa80661a26563685f310ae67cd[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Mon May 3 04:53:17 2021 +0800
+
+    Update README.md
+
+[33mcommit 17efd6d3415f28fa5834c8cee4187158d66b22a8[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Mon May 3 04:45:47 2021 +0800
+
+    Update README.md
+
+[33mcommit 002ed04b91bc336fa9684b23e0267cce7ec948ff[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Mon May 3 04:44:19 2021 +0800
+
+    Update README.md
+
+[33mcommit 5aa99ffe4e22afa08dd6ff93a4b143dd967e54d5[m
+Merge: 8241e68 6ce69c2
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Mon May 3 04:35:12 2021 +0800
+
+    Merge branch 'main' of https://github.com/marlond18/EMDD.KtEquatable into main
+
+[33mcommit 8241e6829aa315831201e8f6ab4f4a2011b6a10d[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Mon May 3 04:34:51 2021 +0800
+
+    Added DoubleEnumerableEqualityAttribute
+
+[33mcommit 6ce69c2887f35bf253fd81c86dc9c0a613dd5f0a[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sun May 2 21:50:01 2021 +0800
+
+    Update README.md
+
+[33mcommit 010b09e75bc74ba244a985e91e11405f22997713[m
+Merge: d1134b9 fbdd981
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sun May 2 21:45:16 2021 +0800
+
+    Merge branch 'main' of https://github.com/marlond18/EMDD.KtEquatable into main
+
+[33mcommit fbdd981ef39a48e5d3adbf2f1433241c9c420853[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sun May 2 21:36:54 2021 +0800
+
+    Update README.md
+
+[33mcommit d1134b9829a60d04fdbbc66abdbdb9f9f8971341[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sun May 2 21:17:33 2021 +0800
+
+    Breaking Changes,
+    
+    Changing of Namespaces
+    Changing the implementation of Attributes
+    Checking of Derived Class
+    Checking of Base Class implementing IEnumerable
+
+[33mcommit 85da8b2380f6d16654144fbd605bbc874af87593[m
+Merge: 36406bc da78a4c
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sun May 2 01:25:06 2021 +0800
+
+    Merge branch 'main' of https://github.com/marlond18/EMDD.KtEquatable into main
+
+[33mcommit 36406bc0670cf88c53650a63fd4e83559069face[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sun May 2 01:24:49 2021 +0800
+
+    Updated the github ref
+
+[33mcommit da78a4c9ce2627913a9a02db5ad80dff65f713b8[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sun May 2 01:20:48 2021 +0800
+
+    Update README.md
+    
+    Changed the Equality of Console.WriteLine(employee2 == employee3); line of code
+
+[33mcommit 0993c53fb83eccfefbb34cfd967bcf729ec6ca2d[m
+Author: marlond18 <marlon.dumalis@yahoo.com>
+Date:   Sun May 2 01:17:15 2021 +0800
+
+    Initial External Commit
+
+[33mcommit 416192f12c66798cbd9b73a3f10b7fe972e42d51[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sun May 2 01:01:55 2021 +0800
+
+    Update README.md
+
+[33mcommit 0df07d50134f3a5448713856394ea4eb1287ff8f[m
+Author: Marlon D. Dumal-is <marlon.dumalis@yahoo.com>
+Date:   Sun May 2 00:54:47 2021 +0800
+
+    Initial commit

@@ -35,6 +35,10 @@ namespace EMDD.KtEquatable
                 {
                     aggregator.AddRecordSourceText(node,symbol);
                 }
+                foreach(var (node, symbol) in reciever.StructTypes)
+                {
+                    aggregator.AddRecordSourceText(node,symbol);
+                }
                 foreach (var diag in aggregator.Diagnostics)
                 {
                     context.ReportDiagnostic(diag);

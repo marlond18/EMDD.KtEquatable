@@ -21,14 +21,14 @@ namespace EMDD.KtEquatable.Syntax
 
         public List<PropertyDefaultEquality> PropertiesSytax { get; set; } = new List<PropertyDefaultEquality>();
 
-        protected void Equality(IndentedTextWriter writer)
+        protected void Equality(IndentedTextWriter writer, bool isNullable = true)
         {
             writer.WriteLine(GeneratedCodeAttributeDeclaration);
-            writer.WriteLine($"public{VirtualOrNot} bool Equals({Name}? other)");
+            writer.WriteLine($"public{VirtualOrNot} bool Equals({Name}{(isNullable ? "?" : "")} other)");
             writer.WriteLine("{");
             writer.Indent++;
             writer.WriteLine("if (ReferenceEquals(this, other)) return true;");
-            writer.WriteLine("if (other is null ||this is null) return false;");
+            if (isNullable) writer.WriteLine("if (other is null ||this is null) return false;");
             writer.Write("return ");
             FSE(writer);
             writer.Indent++;

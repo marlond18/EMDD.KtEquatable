@@ -15,6 +15,7 @@ namespace EMDD.KtEquatable
     {
         public List<(ClassDeclarationSyntax node, ITypeSymbol symbol)> ClassTypes { get; } = new();
         public List<(RecordDeclarationSyntax node, ITypeSymbol symbol)> RecordTypes { get; } = new();
+        public List<(StructDeclarationSyntax node, ITypeSymbol symbol)> StructTypes { get; } = new();
         public List<(SyntaxNode node, ITypeSymbol symbol)> OtherTypes { get; } = new();
 
         public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
@@ -32,6 +33,10 @@ namespace EMDD.KtEquatable
                 else if (syntaxNode is RecordDeclarationSyntax rds)
                 {
                     RecordTypes.Add((rds, symbol));
+                }
+                else if(syntaxNode is StructDeclarationSyntax sds)
+                {
+                    StructTypes.Add((sds, symbol));
                 }
                 else
                 {
