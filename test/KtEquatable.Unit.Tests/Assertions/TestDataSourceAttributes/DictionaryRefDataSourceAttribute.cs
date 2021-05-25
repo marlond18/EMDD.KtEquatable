@@ -19,10 +19,10 @@ namespace KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes
         public EnumerableOrderType OrderType { get; }
         protected readonly bool isClass;
 
-        public DictionaryRefDataSourceAttribute(EnumerableOrderType orderType, bool friendlyName, string objectName, string propName, bool isClass, Type type) : base(friendlyName, objectName, propName, type)
+        public DictionaryRefDataSourceAttribute(EnumerableOrderType orderType, bool friendlyName, string objectName, string propName, bool dictValueTypeIsClass, Type type) : base(friendlyName, objectName, propName, type)
         {
             OrderType = orderType;
-            this.isClass = isClass;
+            this.isClass = dictValueTypeIsClass;
         }
 
         protected override (ComparerSyntax comparerSyntax, string[] attributes) GetComparerDetail()
