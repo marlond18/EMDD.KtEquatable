@@ -37,7 +37,7 @@ namespace EMDD.KtEquatable
                 }
                 foreach(var (node, symbol) in reciever.StructTypes)
                 {
-                    aggregator.AddRecordSourceText(node,symbol);
+                    aggregator.AddStructSourceText(node,symbol);
                 }
                 foreach (var diag in aggregator.Diagnostics)
                 {

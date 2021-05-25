@@ -84,7 +84,7 @@ namespace EMDD.KtEquatable.Core
         public void AddStructSourceText(StructDeclarationSyntax node, ITypeSymbol symbol)
         {
             var bc = new BaseType(symbol.BaseType, Equatable);
-            AddToSourceText<StructSyntax>(symbol, bc, node, SyntaxGenerators.IsEqualityContract);
+            AddToSourceText<StructSyntax>(symbol, bc, node,_=> false);
         }
 
         private void AddToSourceText<T>(ITypeSymbol symbol, BaseType bc, TypeDeclarationSyntax node, Func<IPropertySymbol, bool> ignoreProp) where T : EquatableTypeSyntax, new()
