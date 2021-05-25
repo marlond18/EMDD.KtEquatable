@@ -22,17 +22,17 @@ namespace KtEquatable.Unit.Tests.Assertions
         protected BaseTestDataSourceAttribute(bool friendlyName, string objName, string propName, Type type)
         {
             if (!type.GetInterfaces().Any(i => i == typeof(ISyntaxSource))) throw new Exception($"{type} is not ISyntaxSource");
-            FriendlyName = friendlyName;
+            this.friendlyName = friendlyName;
             this.objName = objName;
             this.propName = propName;
             SourceType = type;
         }
 
-        public bool FriendlyName { get; }
+        protected readonly bool friendlyName;
 
         public IEnumerable<object[]> GetData(MethodInfo methodInfo)
         {
-            var getnameDelegate = FriendlyName ? GetFriendlyTypeNameDelegate : GetCompleteTypeNameDelegate;
+            var getnameDelegate = friendlyName ? GetFriendlyTypeNameDelegate : GetCompleteTypeNameDelegate;
             var (comparerSyntax, atts) = GetComparerDetail();
             var enumNonClass = GetTypes();
             foreach (var (type, comparer, diag) in enumNonClass.Select(d => InitialSourceClassInfo(d, comparerSyntax)))

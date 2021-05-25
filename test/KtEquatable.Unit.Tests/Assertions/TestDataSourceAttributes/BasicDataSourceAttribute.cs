@@ -1,6 +1,4 @@
-﻿using KtEquatable.Unit.Tests.Assertions;
-
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 
 using System;
 using System.Collections.Generic;
@@ -25,7 +23,7 @@ namespace KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes
 
         private readonly DataTypeGroup dataTypeGroup;
 
-        public BasicDataSourceAttribute(DataTypeGroup dataTypeGroup, bool friendlyName, string className, string propName, Type type) : base(friendlyName, className, propName, type)
+        public BasicDataSourceAttribute(DataTypeGroup dataTypeGroup, bool friendlyName, string objName, string propName, Type type) : base(friendlyName, objName, propName, type)
         {
             this.dataTypeGroup = dataTypeGroup;
         }
