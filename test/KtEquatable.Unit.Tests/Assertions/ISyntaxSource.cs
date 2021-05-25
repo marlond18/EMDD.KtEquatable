@@ -31,6 +31,26 @@ namespace KtEquatable.Unit.Tests.Assertions
         public string ImplementationOnGenCode => $" : IEquatable<{ObjectName}>";
     }
 
+    public readonly struct SourceStruct : ISyntaxSource
+    {
+        public string ObjectName { get; }
+        public SourceProperty[] Props { get; }
+        public string InternalType => "struct";
+
+        public SourceStruct(string name, params SourceProperty[] props)
+        {
+            ObjectName = name;
+            Props = props;
+        }
+
+        public override string ToString()
+        {
+            return $"{InternalType} {{Name: {ObjectName}\n\t- {string.Join("\n\t- ", Props.Select(p => p.ToString()))}}}";
+        }
+
+        public string ImplementationOnGenCode => $" : IEquatable<{ObjectName}>";
+    }
+
     public readonly struct SourceRecord : ISyntaxSource
     {
         public string ObjectName { get; }

@@ -1,4 +1,4 @@
-//#define LongTest
+#define LongTest
 
 using EMDD.KtEquatable;
 

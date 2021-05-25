@@ -63,6 +63,12 @@ namespace KtEquatable.Unit.Tests.Assertions
             Assert.IsTrue(o.Contains(eqOp), $"Generated does not contain\n{eqOp}.\n{o}");
         }
 
+        public void HasNonNullableEqualsOperatorFor(string propType)
+        {
+            string eqOp = $"\t\tpublic static bool operator ==({propType} left, {propType} right) =>{Nl}\t\t\tEqualityComparer<{propType}>.Default.Equals(left, right);";
+            Assert.IsTrue(o.Contains(eqOp), $"Generated does not contain\n{eqOp}.\n{o}");
+        }
+
         public void HasPartialObjHeaderFor(string s, string typeName, string implementation)
         {
             Assert.IsTrue(o.Contains($"{Nl}{{{Nl}\tpartial {typeName} {s}{implementation}{Nl}\t"), $"{typeName} {s} is not marked as partial properly.");
