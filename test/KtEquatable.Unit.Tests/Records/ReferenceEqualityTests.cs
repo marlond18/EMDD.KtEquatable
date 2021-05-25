@@ -12,37 +12,37 @@ namespace KtEquatable.Unit.Tests.Records
 	[TestClass]
 	public class ReferenceEqualityTests
 	{
-		private const string className = "B";
+		private const string objName = "B";
 		private const string propName = "P2";
 		private const bool skipEqOp = true;
 		private const bool forIgnoreAtt = false;
 
 		[DataTestMethod]
-		[RefDataSource(true, className, propName, true, typeof(SourceRecord))]
+		[RefDataSource(true, objName, propName, true, typeof(SourceRecord))]
 		public void CorrectDataFriendlyNameTest(SourceRecord sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
 		{
-			sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
+			sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, objName, propName, skipEqOp, forIgnoreAtt);
 		}
 
 		[DataTestMethod]
-		[RefDataSource(false, className, propName, true, typeof(SourceRecord))]
+		[RefDataSource(false, objName, propName, true, typeof(SourceRecord))]
 		public void CorrectDataCompleteNameTest(SourceRecord sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
 		{
-			sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
+			sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, objName, propName, skipEqOp, forIgnoreAtt);
 		}
 
 		[DataTestMethod]
-		[RefDataSource(true, className, propName, false, typeof(SourceRecord))]
+		[RefDataSource(true, objName, propName, false, typeof(SourceRecord))]
 		public void WrongDataFriendlyNameTest(SourceRecord sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
 		{
-			sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
+			sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, objName, propName, skipEqOp, forIgnoreAtt);
 		}
 
 		[DataTestMethod]
-		[RefDataSource(false, className, propName, false, typeof(SourceRecord))]
+		[RefDataSource(false, objName, propName, false, typeof(SourceRecord))]
 		public void WrongDataCompleteNameTest(SourceRecord sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
 		{
-			sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
+			sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, objName, propName, skipEqOp, forIgnoreAtt);
 		}
 	}
 }

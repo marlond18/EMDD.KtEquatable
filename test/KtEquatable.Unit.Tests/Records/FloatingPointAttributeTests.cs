@@ -12,51 +12,51 @@ namespace KtEquatable.Unit.Tests.Records
     [TestClass]
     public class FloatingPointAttributeTests
     {
-        private const string className = "B";
+        private const string objName = "B";
         private const string propName = "P2";
         private const bool skipEqOp = true;
         private const bool forIgnoreAtt = false;
 
         [DataTestMethod]
-        [FloatDataSource(-1, true, className, propName, true, typeof(SourceRecord))]
+        [FloatDataSource(-1, true, objName, propName, true, typeof(SourceRecord))]
         public void FloatNegativeFriendlyNameTest(SourceRecord sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, objName, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [FloatDataSource(-1, false, className, propName, true, typeof(SourceRecord))]
+        [FloatDataSource(-1, false, objName, propName, true, typeof(SourceRecord))]
         public void FloatNegativeCompleteNameTest(SourceRecord sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, objName, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [FloatDataSource(-1, true, className, propName, false, typeof(SourceRecord))]
+        [FloatDataSource(-1, true, objName, propName, false, typeof(SourceRecord))]
         public void WrongDataFriendlyNameTest(SourceRecord sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, objName, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [FloatDataSource(-1, false, className, propName, false, typeof(SourceRecord))]
+        [FloatDataSource(-1, false, objName, propName, false, typeof(SourceRecord))]
         public void WrongDataCompleteNameTest(SourceRecord sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, objName, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [FloatDataSource(10, true, className, propName, true, typeof(SourceRecord))]
+        [FloatDataSource(10, true, objName, propName, true, typeof(SourceRecord))]
         public void FriendlyNameTest(SourceRecord sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, objName, propName, skipEqOp, forIgnoreAtt);
         }
 
         [DataTestMethod]
-        [FloatDataSource(10, false, className, propName, true, typeof(SourceRecord))]
+        [FloatDataSource(10, false, objName, propName, true, typeof(SourceRecord))]
         public void CompleteNameTest(SourceRecord sourceClass, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic)
         {
-            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, className, propName, skipEqOp, forIgnoreAtt);
+            sourceClass.AssertAGeneratedCode(comparerSyntax, diagnostic, objName, propName, skipEqOp, forIgnoreAtt);
         }
     }
 }

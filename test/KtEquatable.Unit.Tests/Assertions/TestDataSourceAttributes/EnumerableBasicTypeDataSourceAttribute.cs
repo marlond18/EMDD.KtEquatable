@@ -20,7 +20,7 @@ namespace KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes
         private readonly Type[] types;
         private readonly EnumerableOrderType orderType;
 
-        public EnumerableBasicTypeDataSourceAttribute(Type type, EnumerableOrderType orderType, bool friendlyName, string className, string propName, params Type[] types) : base(friendlyName, className, propName, type)
+        public EnumerableBasicTypeDataSourceAttribute(Type type, EnumerableOrderType orderType, bool friendlyName, string objName, string propName, params Type[] types) : base(friendlyName, objName, propName, type)
         {
             this.types = types;
             this.orderType = orderType;

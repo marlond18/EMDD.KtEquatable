@@ -19,7 +19,7 @@ namespace KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes
     {
         private readonly bool correctData;
 
-        public RefDataSourceAttribute(bool friendlyName, string className, string propName, bool correctData, Type type) : base(friendlyName, className, propName, type)
+        public RefDataSourceAttribute(bool friendlyName, string objName, string propName, bool correctData, Type type) : base(friendlyName, objName, propName, type)
         {
             this.correctData = correctData;
         }

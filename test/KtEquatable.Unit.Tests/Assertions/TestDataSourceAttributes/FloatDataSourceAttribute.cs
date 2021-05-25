@@ -20,7 +20,7 @@ namespace KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes
         private readonly int precision;
         private readonly bool correctData;
 
-        public FloatDataSourceAttribute(int precision, bool friendlyName, string className, string propName, bool correctData, Type type) : base(friendlyName, className, propName, type)
+        public FloatDataSourceAttribute(int precision, bool friendlyName, string objName, string propName, bool correctData, Type type) : base(friendlyName, objName, propName, type)
         {
             this.precision = precision;
             this.correctData = correctData;

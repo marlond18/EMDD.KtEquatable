@@ -16,7 +16,7 @@ namespace KtEquatable.Unit.Tests.Classes.EnumerableTests
     public class FloatingPointComparerTests
     {
         private const string propName = "P1";
-        private const string className = "A";
+        private const string objName = "A";
 
         [TestMethod]
         [DynamicData(nameof(EnumerableDoubleNames), DynamicDataSourceType.Method)]
@@ -33,8 +33,8 @@ namespace KtEquatable.Unit.Tests.Classes.EnumerableTests
             }
             testIfGeneratedString.HasNullableSyntax();
             testIfGeneratedString.HasCorrectUsingStatements();
-            testIfGeneratedString.HasEqualsOperatorFor(className);
-            testIfGeneratedString.HasPartialObjHeaderFor(className,sourceClass.InternalType, sourceClass.ImplementationOnGenCode);
+            testIfGeneratedString.HasEqualsOperatorFor(objName);
+            testIfGeneratedString.HasPartialObjHeaderFor(objName,sourceClass.InternalType, sourceClass.ImplementationOnGenCode);
             testIfGeneratedString.HasEqualityComparerFor(propName, comparerSyntax);
         }
 
@@ -54,7 +54,7 @@ namespace KtEquatable.Unit.Tests.Classes.EnumerableTests
                     foreach (var type in ListOfEnumerables(typeof(double?)))
                     {
                         var sourceProp = new SourceProperty(GetFriendlyTypeNameDelegate(type), propName, attr);
-                        var sourceClass = new SourceClass(className, sourceProp);
+                        var sourceClass = new SourceClass(objName, sourceProp);
                         var comparer = comparerSyntax(type);
                         yield return new object[] { sourceClass, comparer, diag };
                     }
@@ -64,7 +64,7 @@ namespace KtEquatable.Unit.Tests.Classes.EnumerableTests
                         foreach (var propTypeName in new[] { GetFriendlyTypeNameDelegate(type), GetCompleteTypeNameDelegate(type) })
                         {
                             var sourceProp = new SourceProperty(propTypeName, propName, attr);
-                            var sourceClass = new SourceClass(className, sourceProp);
+                            var sourceClass = new SourceClass(objName, sourceProp);
                             yield return new object[] { sourceClass, comparer, diag };
                         }
                     }
@@ -79,7 +79,7 @@ namespace KtEquatable.Unit.Tests.Classes.EnumerableTests
                     foreach (var type in ListOfDictionaries(typeof(string), typeof(double?)))
                     {
                         var sourceProp = new SourceProperty(GetFriendlyTypeNameDelegate(type), propName, attr);
-                        var sourceClass = new SourceClass(className, sourceProp);
+                        var sourceClass = new SourceClass(objName, sourceProp);
                         var comparer = comparerSyntax(type);
                         yield return new object[] { sourceClass, comparer, diag2 };
                     }
@@ -89,7 +89,7 @@ namespace KtEquatable.Unit.Tests.Classes.EnumerableTests
                         foreach (var propTypeName in new[] { GetFriendlyTypeNameDelegate(type), GetCompleteTypeNameDelegate(type) })
                         {
                             var sourceProp = new SourceProperty(propTypeName, propName, attr);
-                            var sourceClass = new SourceClass(className, sourceProp);
+                            var sourceClass = new SourceClass(objName, sourceProp);
                             yield return new object[] { sourceClass, comparer, diag2 };
                         }
                     }

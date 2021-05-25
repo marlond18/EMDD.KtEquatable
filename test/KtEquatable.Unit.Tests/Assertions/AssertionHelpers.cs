@@ -42,7 +42,7 @@ namespace KtEquatable.Unit.Tests.Assertions
             return Test.IfGeneratedString(diagnostics, output);
         }
 
-        internal static void AssertAGeneratedCode(this ISyntaxSource sourceObj, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic, string className, string propName, bool skipEqualityOpTest, bool forIgnoredAttr)
+        internal static void AssertAGeneratedCode(this ISyntaxSource sourceObj, string comparerSyntax, TypeInfo<IPropertySymbol> diagnostic, string objName, string propName, bool skipEqualityOpTest, bool forIgnoredAttr)
         {
             var testIfGeneratedString = GetGeneratedOutputAssertion(sourceObj);
             if (diagnostic is null)
@@ -55,8 +55,8 @@ namespace KtEquatable.Unit.Tests.Assertions
             }
             testIfGeneratedString.HasNullableSyntax();
             testIfGeneratedString.HasCorrectUsingStatements();
-            if (!skipEqualityOpTest) testIfGeneratedString.HasEqualsOperatorFor(className);
-            testIfGeneratedString.HasPartialObjHeaderFor(className, sourceObj.InternalType, sourceObj.ImplementationOnGenCode);
+            if (!skipEqualityOpTest) testIfGeneratedString.HasEqualsOperatorFor(objName);
+            testIfGeneratedString.HasPartialObjHeaderFor(objName, sourceObj.InternalType, sourceObj.ImplementationOnGenCode);
             if (forIgnoredAttr)
             {
                 testIfGeneratedString.HasEqualityComparerFor("OtherProp2", Basic(typeof(int)));

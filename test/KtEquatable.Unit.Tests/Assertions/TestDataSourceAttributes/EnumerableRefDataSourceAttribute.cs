@@ -19,7 +19,7 @@ namespace KtEquatable.Unit.Tests.Assertions.TestDataSourceAttributes
         public EnumerableOrderType OrderType { get; }
         protected readonly bool isClass;
 
-        public EnumerableRefDataSourceAttribute(EnumerableOrderType orderType, bool friendlyName, string className, string propName, bool isClass, Type type) : base(friendlyName, className, propName, type)
+        public EnumerableRefDataSourceAttribute(EnumerableOrderType orderType, bool friendlyName, string objName, string propName, bool isClass, Type type) : base(friendlyName, objName, propName, type)
         {
             OrderType = orderType;
             this.isClass = isClass;
