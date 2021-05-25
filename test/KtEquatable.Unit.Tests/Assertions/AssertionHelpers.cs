@@ -55,7 +55,18 @@ namespace KtEquatable.Unit.Tests.Assertions
             }
             testIfGeneratedString.HasNullableSyntax();
             testIfGeneratedString.HasCorrectUsingStatements();
-            if (!skipEqualityOpTest) testIfGeneratedString.HasEqualsOperatorFor(objName);
+            if (!skipEqualityOpTest)
+            {
+                if (sourceObj is SourceStruct)
+                {
+                    testIfGeneratedString.HasNonNullableEqualsOperatorFor(objName);
+                }
+                else
+                {
+                    testIfGeneratedString.HasEqualsOperatorFor(objName);
+                }
+            }
+
             testIfGeneratedString.HasPartialObjHeaderFor(objName, sourceObj.InternalType, sourceObj.ImplementationOnGenCode);
             if (forIgnoredAttr)
             {
