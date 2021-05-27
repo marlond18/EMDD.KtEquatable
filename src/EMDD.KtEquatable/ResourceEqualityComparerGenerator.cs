@@ -14,6 +14,7 @@ namespace EMDD.KtEquatable
         {
             context.RegisterForPostInitialization(cc =>
             {
+                cc.AddSource("ComparerHelper.g.cs", EqualityComparerWriter.ComparerHelper());
                 cc.AddSource("DictionaryEqualityComparer.g.cs", EqualityComparerWriter.DictionaryEqualityComparer());
                 cc.AddSource("FloatingPointEqualityComparer.g.cs", EqualityComparerWriter.FloatingPointEqualityComparer());
                 cc.AddSource("OrderedEqualityComparer.g.cs", EqualityComparerWriter.OrderedEqualityComparer());

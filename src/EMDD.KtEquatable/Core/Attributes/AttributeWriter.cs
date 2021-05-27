@@ -45,7 +45,7 @@ namespace EMDD.KtEquatable.Core.Attributes
                         i2.WriteLine("public EnumerableOrderType OrderType { get; }");
                     });
                     i1.WriteLine();
-                    i1.WriteMethod("public enum EnumerableOrderType", i2 =>
+                    i1.WriteMethod("internal enum EnumerableOrderType", i2 =>
                     {
                         i2.WriteLine("Unordered = 0,");
                         i2.WriteLine("Ordered = 1,");
