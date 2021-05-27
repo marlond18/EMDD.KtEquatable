@@ -4,8 +4,4 @@
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="EMDD.KtEquatable" Version="3.1.0.6-alpha"  PrivateAssets="all"/>
-  </ItemGroup>
 </Project>
