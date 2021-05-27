@@ -1,8 +1,6 @@
 ﻿using Microsoft.CodeAnalysis.Text;
 
-using System.CodeDom.Compiler;
-using System.IO;
-using System.Text;
+using static EMDD.KtEquatable.Syntax.SyntaxGenerators;
 
 namespace EMDD.KtEquatable.Core.Attributes
 {
@@ -17,120 +15,93 @@ namespace EMDD.KtEquatable.Core.Attributes
 
         public static SourceText EquatableAttribute()
         {
-            var strWriter = new StringWriter();
-            var indented = new IndentedTextWriter(strWriter, "\t");
-            indented.WriteLine("using System;");
-            indented.WriteLine();
-            indented.WriteLine($"namespace {AttrNamespace}");
-            indented.WriteLine("{");
-            indented.Indent++;
-            indented.WriteLine("[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]");
-            indented.WriteLine($"internal class {EquatableAttributeName} : Attribute");
-            indented.WriteLine("{");
-            indented.WriteLine("}");
-            indented.Indent--;
-            indented.WriteLine("}");
-            return SourceText.From(strWriter.ToString(), Encoding.UTF8);
+            return Write(i =>
+            {
+                i.WriteLine("using System;");
+                i.WriteLine();
+                i.WriteMethod($"namespace {AttrNamespace}", i1 =>
+                {
+                    i1.WriteLine("[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]");
+                    i1.WriteMethod($"internal class {EquatableAttributeName} : Attribute");
+                });
+            });
         }
 
         public static SourceText EnumerableEqualityAttribute()
         {
-            var strWriter = new StringWriter();
-            var indented = new IndentedTextWriter(strWriter, "\t");
-            indented.WriteLine("using System;");
-            indented.WriteLine();
-            indented.WriteLine($"namespace {AttrNamespace}");
-            indented.WriteLine("{");
-            indented.Indent++;
-            indented.WriteLine("[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]");
-            indented.WriteLine($"internal class {EnumerableEqualityAttrName} : Attribute");
-            indented.WriteLine("{");
-            indented.Indent++;
-            indented.WriteLine($"public {EnumerableEqualityAttrName}(EnumerableOrderType orderType = EnumerableOrderType.Unordered)");
-            indented.WriteLine("{");
-            indented.Indent++;
-            indented.WriteLine("OrderType = orderType;");
-            indented.Indent--;
-            indented.WriteLine("}");
-            indented.WriteLine();
-            indented.WriteLine("public EnumerableOrderType OrderType { get; }");
-            indented.Indent--;
-            indented.WriteLine("}");
-            indented.WriteLine();
-            indented.WriteLine("public enum EnumerableOrderType");
-            indented.WriteLine("{");
-            indented.Indent++;
-            indented.WriteLine("Unordered = 0,");
-            indented.WriteLine("Ordered = 1,");
-            indented.WriteLine("Set = 2,");
-            indented.Indent--;
-            indented.WriteLine("}");
-            indented.Indent--;
-            indented.WriteLine("}");
-            return SourceText.From(strWriter.ToString(), Encoding.UTF8);
+            return Write(i =>
+            {
+                i.WriteLine("using System;");
+                i.WriteLine();
+                i.WriteMethod($"namespace {AttrNamespace}", i1 =>
+                {
+                    i1.WriteLine("[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]");
+                    i1.WriteMethod($"internal class {EnumerableEqualityAttrName} : Attribute", i2 =>
+                    {
+                        i2.WriteMethod(
+                            header: $"public {EnumerableEqualityAttrName}(EnumerableOrderType orderType = EnumerableOrderType.Unordered)",
+                            content: "OrderType = orderType;");
+                        i2.WriteLine();
+                        i2.WriteLine("public EnumerableOrderType OrderType { get; }");
+                    });
+                    i1.WriteLine();
+                    i1.WriteMethod("public enum EnumerableOrderType", i2 =>
+                    {
+                        i2.WriteLine("Unordered = 0,");
+                        i2.WriteLine("Ordered = 1,");
+                        i2.WriteLine("Set = 2,");
+                    });
+                });
+            });
         }
 
         public static SourceText FloatingPointEqualityAttribute()
         {
-            var strWriter = new StringWriter();
-            var indented = new IndentedTextWriter(strWriter, "\t");
-            indented.WriteLine("using System;");
-            indented.WriteLine();
-            indented.WriteLine($"namespace {AttrNamespace}");
-            indented.WriteLine("{");
-            indented.Indent++;
-            indented.WriteLine("[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]");
-            indented.WriteLine($"internal class {FloatingPointEqualityAttrName} : Attribute");
-            indented.WriteLine("{");
-            indented.Indent++;
-            indented.WriteLine($"public {FloatingPointEqualityAttrName}(int precision = 10)");
-            indented.WriteLine("{");
-            indented.Indent++;
-            indented.WriteLine("Precision = precision;");
-            indented.Indent--;
-            indented.WriteLine("}");
-            indented.WriteLine("public int Precision { get; }");
-            indented.Indent--;
-            indented.WriteLine("}");
-            indented.Indent--;
-            indented.WriteLine("}");
-            return SourceText.From(strWriter.ToString(), Encoding.UTF8);
+            return Write(i =>
+            {
+                i.WriteLine("using System;");
+                i.WriteLine();
+                i.WriteMethod($"namespace {AttrNamespace}", i1 =>
+                {
+                    i1.WriteLine("[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]");
+                    i1.WriteMethod($"internal class {FloatingPointEqualityAttrName} : Attribute", i2 =>
+                    {
+                        i2.WriteLine("public int Precision { get; }");
+                        i2.WriteLine();
+                        i2.WriteMethod(
+                            header: $"public {FloatingPointEqualityAttrName}(int precision = 10)",
+                            content: "Precision = precision;");
+                    });
+                });
+            });
         }
 
         public static SourceText IgnoreEqualityAttribute()
         {
-            var strWriter = new StringWriter();
-            var indented = new IndentedTextWriter(strWriter, "\t");
-            indented.WriteLine("using System;");
-            indented.WriteLine();
-            indented.WriteLine($"namespace {AttrNamespace}");
-            indented.WriteLine("{");
-            indented.Indent++;
-            indented.WriteLine("[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]");
-            indented.WriteLine($"internal class {IgnoreEqualityAttrName} : Attribute");
-            indented.WriteLine("{");
-            indented.WriteLine("}");
-            indented.Indent--;
-            indented.WriteLine("}");
-            return SourceText.From(strWriter.ToString(), Encoding.UTF8);
+            return Write(i =>
+            {
+                i.WriteLine("using System;");
+                i.WriteLine();
+                i.WriteMethod($"namespace {AttrNamespace}", i1 =>
+                {
+                    i1.WriteLine("[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]");
+                    i1.WriteMethod($"internal class {IgnoreEqualityAttrName} : Attribute");
+                });
+            });
         }
 
         public static SourceText ReferenceEqualityAttribute()
         {
-            var strWriter = new StringWriter();
-            var indented = new IndentedTextWriter(strWriter, "\t");
-            indented.WriteLine("using System;");
-            indented.WriteLine();
-            indented.WriteLine($"namespace {AttrNamespace}");
-            indented.WriteLine("{");
-            indented.Indent++;
-            indented.WriteLine("[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]");
-            indented.WriteLine($"internal class {ReferenceEqualityAttrName} : Attribute");
-            indented.WriteLine("{");
-            indented.WriteLine("}");
-            indented.Indent--;
-            indented.WriteLine("}");
-            return SourceText.From(strWriter.ToString(), Encoding.UTF8);
+            return Write(i =>
+            {
+                i.WriteLine("using System;");
+                i.WriteLine();
+                i.WriteMethod($"namespace {AttrNamespace}", i1 =>
+                {
+                    i1.WriteLine("[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]");
+                    i1.WriteMethod($"internal class {ReferenceEqualityAttrName} : Attribute");
+                });
+            });
         }
     }
 }

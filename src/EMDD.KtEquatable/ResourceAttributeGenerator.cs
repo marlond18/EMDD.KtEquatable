@@ -1,11 +1,6 @@
-﻿using EMDD.KtEquatable.Core;
-using EMDD.KtEquatable.Core.Attributes;
+﻿using EMDD.KtEquatable.Core.Attributes;
 
 using Microsoft.CodeAnalysis;
-#if DEBUG
-using System.Diagnostics;
-#endif
-using static EMDD.KtEquatable.Core.CoreHelpers;
 namespace EMDD.KtEquatable
 {
     [Generator]

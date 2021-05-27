@@ -16,7 +16,7 @@
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/marlond18/EMDD.KtEquatable.git</RepositoryUrl>
     <PackageProjectUrl>https://github.com/marlond18/EMDD.KtEquatable</PackageProjectUrl>
-    <Version>3.2.0</Version>
+    <Version>3.1.0.01-alpha</Version>
     <PackageReleaseNotes>Changes on implementation/writing of attributes and comparers</PackageReleaseNotes>
     <IncludeBuiltProjectOutputGroup>false</IncludeBuiltProjectOutputGroup>
   </PropertyGroup>

@@ -2,23 +2,12 @@
 
 using Microsoft.CodeAnalysis.Text;
 
-using System;
-using System.CodeDom.Compiler;
-using System.IO;
-using System.Text;
+using static EMDD.KtEquatable.Syntax.SyntaxGenerators;
 
 namespace EMDD.KtEquatable.Core.EqualityComparers
 {
     public static class EqualityComparerWriter
     {
-        private static SourceText Write(Action<IndentedTextWriter> writer)
-        {
-            var strWriter = new StringWriter();
-            var i = new IndentedTextWriter(strWriter, "\t");
-            writer(i);
-            return SourceText.From(strWriter.ToString(), Encoding.UTF8);
-        }
-
         public static SourceText DictionaryEqualityComparer()
         {
             return Write(i =>
@@ -60,8 +49,11 @@ namespace EMDD.KtEquatable.Core.EqualityComparers
                             i3.WriteLine("return true;");
                         });
                         i2.WriteLine();
-                        i2.WriteLine("public override int GetHashCode(TSource? obj)");
-                        i2.WriteInsideBracket("return (obj?.Aggregate(0, (hashCode, t) => hashCode ^ ((EqualityComparer<TKey>.Default.GetHashCode(t.Key) + _valueComparer.GetHashCode(t.Value)) & 0x7FFFFFFF))) ?? 0; ");
+                        i2.WriteMethod("public override int GetHashCode(TSource? obj)", i3 =>
+                        {
+                            i3.WriteLine("if (obj is null) return 0;");
+                            i3.WriteLine("return (obj.Aggregate(0, (hashCode, t) => hashCode ^ ((EqualityComparer<TKey>.Default.GetHashCode(t.Key) + _valueComparer.GetHashCode(t.Value)) & 0x7FFFFFFF)));");
+                        });
                     });
                     i1.WriteLineNoTabs("#nullable restore");
                 });
@@ -89,7 +81,6 @@ namespace EMDD.KtEquatable.Core.EqualityComparers
                         i2.WriteLine();
                         i2.WriteLine("public int GetHashCode(double obj)");
                         i2.WriteInsideBracket("return obj.GetDoubleHashCode(precision);");
-                        i2.WriteLine();
                     });
                 });
             });
@@ -195,14 +186,14 @@ namespace EMDD.KtEquatable.Core.EqualityComparers
         {
             return Write(i =>
             {
-                i.WriteLine("using System;;");
+                i.WriteLine("using System;");
                 i.WriteLine("using System.Collections.Generic;");
                 i.WriteLine("using System.Linq;");
                 i.WriteLine();
                 i.WriteMethod("namespace EMDD.KtEquatable.Core.EqualityComparers", i1 =>
                 {
                     i1.WriteLineNoTabs("#nullable enable");
-                    i1.WriteMethod("public class UnorderedEqualityComparer<TSource,T> : EnumerableEqualityComparer<TSource?, T> where TSource:IEnumerable<T>?", i2 =>
+                    i1.WriteMethod("internal class UnorderedEqualityComparer<TSource,T> : EnumerableEqualityComparer<TSource?, T> where TSource : IEnumerable<T>?", i2 =>
                     {
                         i2.WriteMethod("public UnorderedEqualityComparer(IEqualityComparer<T> valueComparer) : base(valueComparer)");
                         i2.WriteLine();
@@ -216,7 +207,9 @@ namespace EMDD.KtEquatable.Core.EqualityComparers
                             i3.WriteLine("return x.All(xVal => y.Contains(xVal, _valueComparer)) && y.All(yVal => x.Contains(yVal, _valueComparer));");
                         });
                         i2.WriteLine();
-                        i2.WriteMethod("public override int GetHashCode(TSource? obj) => 0;", "return (obj?.Aggregate(0, (hashCode, t) => t is null ? hashCode : hashCode ^ (_valueComparer.GetHashCode(t) & 0x7FFFFFFF))) ?? 0;");
+                        i2.WriteMethod(
+                            header: "public override int GetHashCode(TSource? obj)",
+                            content: "return (obj?.Aggregate(0, (hashCode, t) => t is null ? hashCode : hashCode ^ (_valueComparer.GetHashCode(t) & 0x7FFFFFFF))) ?? 0;");
                     });
                     i1.WriteLineNoTabs("#nullable restore");
                 });

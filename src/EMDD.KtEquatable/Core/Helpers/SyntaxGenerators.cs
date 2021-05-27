@@ -4,17 +4,28 @@ using EMDD.KtEquatable.Core.EqualityComparers;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Text;
 
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace EMDD.KtEquatable.Syntax
 {
     public static class SyntaxGenerators
     {
+        internal static SourceText Write(Action<IndentedTextWriter> writer)
+        {
+            var strWriter = new StringWriter();
+            var i = new IndentedTextWriter(strWriter, "\t");
+            writer(i);
+            return SourceText.From(strWriter.ToString(), Encoding.UTF8);
+        }
+
         internal static void WriteMethod(this IndentedTextWriter writer, string header, Action<IndentedTextWriter> action)
         {
             writer.WriteLine(header);
