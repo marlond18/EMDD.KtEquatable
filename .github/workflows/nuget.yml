@@ -4,14 +4,6 @@ on:
   push:
     tags:
     - 'v*'
-    branches:
-    - main
-
-  pull_request:
-    branches:
-    - main
-    tags:
-    - 'v*'
 
 env:
   PROJECT_PATH: "src/EMDD.KtEquatable/EMDD.KtEquatable.csproj"
