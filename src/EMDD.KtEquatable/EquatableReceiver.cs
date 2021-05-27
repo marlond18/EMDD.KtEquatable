@@ -23,7 +23,7 @@ namespace EMDD.KtEquatable
             var syntaxNode = context.Node;
             var model = context.SemanticModel;
             var symbol = model.GetDeclaredSymbol(syntaxNode) as INamedTypeSymbol;
-            var equatable = model.Compilation.GetTypeByMetadataName(typeof(EquatableAttribute).FullName)!;
+            var equatable = model.Compilation.GetTypeByMetadataName($"{AttributeWriter.AttrNamespace}.{AttributeWriter.EquatableAttributeName}")!;
             if (symbol.HasAttribute(equatable))
             {
                 if (syntaxNode is ClassDeclarationSyntax cds)
