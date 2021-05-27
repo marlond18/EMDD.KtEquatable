@@ -1,4 +1,4 @@
-#define LongTest
+//#define LongTest
 
 using EMDD.KtEquatable;
 
@@ -28,8 +28,9 @@ namespace KtEquatable.Unit.Tests
                 references, new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
             var originalTreeCount = compilation.SyntaxTrees.Length;
             var generator = new EqualsGenerator();
+            var sss = new ResourceAttributeGenerator();
 
-            var driver = CSharpGeneratorDriver.Create(ImmutableArray.Create<ISourceGenerator>(generator));
+            var driver = CSharpGeneratorDriver.Create(ImmutableArray.Create<ISourceGenerator>(sss, generator));
             driver.RunGeneratorsAndUpdateCompilation(compilation, out var outputCompilation, out var diagnostics);
 
             var trees = outputCompilation.SyntaxTrees.ToList();

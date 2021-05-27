@@ -1,9 +1,10 @@
 ﻿using EMDD.KtEquatable.Core;
+using EMDD.KtEquatable.Core.Attributes;
 
 using Microsoft.CodeAnalysis;
-
+#if DEBUG
 using System.Diagnostics;
-
+#endif
 using static EMDD.KtEquatable.Core.CoreHelpers;
 namespace EMDD.KtEquatable
 {
@@ -12,9 +13,9 @@ namespace EMDD.KtEquatable
     {
         public void Initialize(GeneratorInitializationContext context)
         {
-            //#if DEBUG
-            //            Debugger.Launch();
-            //#endif
+            #if DEBUG
+                        Debugger.Launch();
+            #endif
             context.RegisterForSyntaxNotifications(() => new EquatableReceiver());
         }
 
@@ -29,15 +30,15 @@ namespace EMDD.KtEquatable
                 }
                 foreach (var (node, symbol) in reciever.ClassTypes)
                 {
-                    aggregator.AddClassSourceText(node,symbol);
+                    aggregator.AddClassSourceText(node, symbol);
                 }
                 foreach (var (node, symbol) in reciever.RecordTypes)
                 {
-                    aggregator.AddRecordSourceText(node,symbol);
+                    aggregator.AddRecordSourceText(node, symbol);
                 }
-                foreach(var (node, symbol) in reciever.StructTypes)
+                foreach (var (node, symbol) in reciever.StructTypes)
                 {
-                    aggregator.AddStructSourceText(node,symbol);
+                    aggregator.AddStructSourceText(node, symbol);
                 }
                 foreach (var diag in aggregator.Diagnostics)
                 {

@@ -16,8 +16,9 @@
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/marlond18/EMDD.KtEquatable.git</RepositoryUrl>
     <PackageProjectUrl>https://github.com/marlond18/EMDD.KtEquatable</PackageProjectUrl>
-    <Version>3.1.0</Version>
-    <PackageReleaseNotes>added implementation for struct types</PackageReleaseNotes>
+    <Version>3.2.0</Version>
+    <PackageReleaseNotes>Changes on implementation/writing of attributes and comparers</PackageReleaseNotes>
+    <IncludeBuiltProjectOutputGroup>false</IncludeBuiltProjectOutputGroup>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -26,10 +27,6 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\..\build\EMDD.KtEquatable\</OutputPath>
-  </PropertyGroup>
-  
-    <PropertyGroup>
-    <RestoreAdditionalProjectSources>https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet5/nuget/v3/index.json ;$(RestoreAdditionalProjectSources)</RestoreAdditionalProjectSources>
   </PropertyGroup>
   
   <ItemGroup>
