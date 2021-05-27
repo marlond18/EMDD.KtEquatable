@@ -15,6 +15,6 @@ namespace EMDD.KtEquatable.Core
 
         public static string NameSpace => $"EMDD.{SourceGenName}";
 
-        public const string Version = "3.1.0.07-alpha";
+        public const string Version = "3.1.0.01-alpha";
     }
 }

@@ -6,7 +6,7 @@ on:
     - 'v*'
 
 env:
-  PROJECT_PATH: "src/EMDD.KtEquatable/EMDD.KtEquatable.csproj"
+  PROJECT_PATH: 'src/EMDD.KtEquatable/EMDD.KtEquatable.csproj'
   PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}\output
   NUGET_SOURCE_URL: 'https://api.nuget.org/v3/index.json'
 
@@ -21,7 +21,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: netstardard2.0
 
     - name: Restore dependencies
       run: dotnet restore
