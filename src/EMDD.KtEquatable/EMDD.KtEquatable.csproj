@@ -7,7 +7,7 @@
     <AssemblyName>EMDD.KtEquatable</AssemblyName>
     <Authors>Marlon D. Dumal-is</Authors>
     <Company>EMDD</Company>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!--<EmbedUntrackedSources>true</EmbedUntrackedSources>-->
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
