@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "EMDD.KtEquatable/3.1.0.06-alpha": {
+      "EMDD.KtEquatable/3.2.0": {
         "dependencies": {
           "Microsoft.Bcl.HashCode": "1.1.0",
           "Microsoft.CodeAnalysis.Analyzers": "3.3.2",
@@ -702,7 +702,7 @@
     }
   },
   "libraries": {
-    "EMDD.KtEquatable/3.1.0.06-alpha": {
+    "EMDD.KtEquatable/3.2.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

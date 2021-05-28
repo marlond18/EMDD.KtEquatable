@@ -8,12 +8,12 @@
     <Authors>Marlon D. Dumal-is</Authors>
     <Company>EMDD</Company>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <IncludeSymbols>true</IncludeSymbols>
-    <!--<SymbolPackageFormat>snupkg</SymbolPackageFormat>-->
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>emd2.png</PackageIcon>
-    <RepositoryType>git</RepositoryType>
     <PackageTags>C#, Net5, Source Generator, IEquatable&lt;T&gt;, IEquatable</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <!--<IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>-->
     <Description>A source code generator for implemention IEquatable&lt;T&gt; using Attributes.</Description>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/marlond18/EMDD.KtEquatable.git</RepositoryUrl>
