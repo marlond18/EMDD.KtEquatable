@@ -22,7 +22,7 @@ https://www.nuget.org/packages/EMDD.KtEquatable/
 
 ## Breaking Changes and Updates 
 ### (3.1.0 to 3.2.0)
-- In the previous version, the attributes and equality comparer must be exposed, which means that the output build must be a library; was removed ```<IncludeBuildOutput>false</IncludeBuildOutput>```. In the new update, the attributes and equalitycomparers are also included in the generated code making it possible to add ```<IncludeBuildOutput>false</IncludeBuildOutput>``` in the package settings, making the package purely as an analyzer.
+- In the previous version, the attributes and equality comparer must be exposed, which means that the output build must be a library; had to remove ```<IncludeBuildOutput>false</IncludeBuildOutput>```. In the new update, the attributes and equalitycomparers are also included in the generated code making it possible to add ```<IncludeBuildOutput>false</IncludeBuildOutput>``` in the package settings, making the package purely as an analyzer.
 
 see [History of Breaking Changes and Updates](https://github.com/marlond18/EMDD.KtEquatable/blob/main/History%20of%20Breaking%20Changes%20and%20Updates.md)
 
