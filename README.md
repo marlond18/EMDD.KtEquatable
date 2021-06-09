@@ -26,7 +26,7 @@ If you intend to use this generator on projects that are intended as libraries t
   <PrivateAssets>all</PrivateAssets>
 </PackageReference>
 ```
-for some reason (which I can't trace as of now), in some cases version 3.2.0 to 3.2.2 produces an error that says the attributes are inaccessible when used on multiple projects in one solution. It seems this only occurs with older pre-existing solutions. (see (issue)[https://github.com/marlond18/EMDD.KtEquatable/issues/11]). the work around is to use version 3.1.0, which is practically the same as 3.2.0
+for some reason (which I can't trace as of now), in some cases version 3.2.0 to 3.2.2 produces an error that says the attributes are inaccessible when used on multiple projects in one solution. It seems this only occurs with older pre-existing solutions. (see ([issue](https://github.com/marlond18/EMDD.KtEquatable/issues/11)). the work around is to use version 3.1.0, which is practically the same as 3.2.0
 
 ## Breaking Changes and Updates 
 ### (3.1.0 to 3.2.0)
