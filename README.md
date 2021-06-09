@@ -20,6 +20,13 @@ https://www.nuget.org/packages/EMDD.KtEquatable/
 
 `<PackageReference Include="EMDD.KtEquatable" Version="*.*.*" />`
 
+If you intend to use this generator on projects that are intended as libraries to be consumed by other projects make sure to set the `<PrivateAssets>all</PrivateAssets>`. example:
+```
+<PackageReference Include="EMDD.KtEquatable" Version="3.1.0">
+  <PrivateAssets>all</PrivateAssets>
+</PackageReference>
+```
+
 ## Breaking Changes and Updates 
 ### (3.1.0 to 3.2.0)
 - In the previous version, the attributes and equality comparer must be exposed, which means that the output build must be a library; had to remove ```<IncludeBuildOutput>false</IncludeBuildOutput>```. In the new update, the attributes and equalitycomparers are also included in the generated code making it possible to add ```<IncludeBuildOutput>false</IncludeBuildOutput>``` in the package settings, making the package purely as an analyzer.
