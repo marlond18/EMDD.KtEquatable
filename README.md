@@ -20,7 +20,7 @@ https://www.nuget.org/packages/EMDD.KtEquatable/
 
 `<PackageReference Include="EMDD.KtEquatable" Version="*.*.*" />`
 
-If you intend to use this generator on projects that are intended as libraries to be consumed by other projects make sure to set the `<PrivateAssets>all</PrivateAssets>`. example:
+If you intend to use this generator on projects that are intended as libraries to be consumed by other projects make sure to set the `<PrivateAssets>all</PrivateAssets>`. example syntax on your csproj file:
 ```
 <PackageReference Include="EMDD.KtEquatable" Version="3.1.0">
   <PrivateAssets>all</PrivateAssets>
