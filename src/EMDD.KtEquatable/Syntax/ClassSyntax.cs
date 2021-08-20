@@ -11,7 +11,7 @@ namespace EMDD.KtEquatable.Syntax
     {
         public override void BuildString(IndentedTextWriter indented)
         {
-            indented.WriteLine($"partial class {Name} : IEquatable<{Name}>");
+            indented.WriteLine($"partial class {Name} :{(string.IsNullOrEmpty(BaseType.Name) || BaseType.Name=="object" ? "" : " " + BaseType.Name + ",")} IEquatable<{Name}>");
             indented.WriteLine("{");
             indented.WriteLineNoTabs("#nullable enable");
             indented.Indent++;

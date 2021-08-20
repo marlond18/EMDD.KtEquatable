@@ -21,9 +21,8 @@ https://www.nuget.org/packages/EMDD.KtEquatable/
 `<PackageReference Include="EMDD.KtEquatable" Version="*.*.*" />`
 
 ## Breaking Changes and Updates 
-### (3.0.0 to 3.1.0)
-- added support for struct types
-
+## (3.2.0 to 3.3.0)
+- Had to reintroduce 3.1.0 (since 3.2.0 is almost the same as 3.1.0). 3.2.0 appears to have issues with several projects that I haven't been able to reproduce in tests. Another issue with derived classes has been resolved. 
 see [History of Breaking Changes and Updates](https://github.com/marlond18/EMDD.KtEquatable/blob/main/History%20of%20Breaking%20Changes%20and%20Updates.md)
 
 ## Usage
