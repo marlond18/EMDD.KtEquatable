@@ -24,10 +24,10 @@ namespace EMDD.KtEquatable.Core
     {
         public AttributeTypeSymbols(GeneratorExecutionContext context)
         {
-            EnumerableEquality = context.Compilation.GetTypeByMetadataName(typeof(EnumerableEqualityAttribute).FullName)!;
-            IgnoreEquality = context.Compilation.GetTypeByMetadataName(typeof(IgnoreEqualityAttribute).FullName)!;
-            ReferenceEquality = context.Compilation.GetTypeByMetadataName(typeof(ReferenceEqualityAttribute).FullName)!;
-            FloatingPointEquality = context.Compilation.GetTypeByMetadataName(typeof(FloatingPointEqualityAttribute).FullName)!;
+            EnumerableEquality = context.Compilation.GetTypeByMetadataName($"{AttributeWriter.AttrNamespace}.{AttributeWriter.EnumerableEqualityAttrName}")!;
+            IgnoreEquality = context.Compilation.GetTypeByMetadataName($"{AttributeWriter.AttrNamespace}.{AttributeWriter.IgnoreEqualityAttrName}")!;
+            ReferenceEquality = context.Compilation.GetTypeByMetadataName($"{AttributeWriter.AttrNamespace}.{AttributeWriter.ReferenceEqualityAttrName}")!;
+            FloatingPointEquality = context.Compilation.GetTypeByMetadataName($"{AttributeWriter.AttrNamespace}.{AttributeWriter.FloatingPointEqualityAttrName}")!;
         }
 
         public INamedTypeSymbol EnumerableEquality { get; set; }
@@ -49,7 +49,7 @@ namespace EMDD.KtEquatable.Core
 
         private GeneratorWriter(GeneratorExecutionContext context)
         {
-            Equatable = context.Compilation.GetTypeByMetadataName(typeof(EquatableAttribute).FullName)!;
+            Equatable = context.Compilation.GetTypeByMetadataName($"{AttributeWriter.AttrNamespace}.{AttributeWriter.EquatableAttributeName}")!;
             Atts = new AttributeTypeSymbols(context);
             _config = context.AnalyzerConfigOptions;
         }
@@ -84,7 +84,7 @@ namespace EMDD.KtEquatable.Core
         public void AddStructSourceText(StructDeclarationSyntax node, ITypeSymbol symbol)
         {
             var bc = new BaseType(symbol.BaseType, Equatable);
-            AddToSourceText<StructSyntax>(symbol, bc, node,_=> false);
+            AddToSourceText<StructSyntax>(symbol, bc, node, _ => false);
         }
 
         private void AddToSourceText<T>(ITypeSymbol symbol, BaseType bc, TypeDeclarationSyntax node, Func<IPropertySymbol, bool> ignoreProp) where T : EquatableTypeSyntax, new()
@@ -151,12 +151,12 @@ namespace EMDD.KtEquatable.Core
                     var at = property.GetAttribute(Atts.EnumerableEquality);
                     if (at?.ConstructorArguments[0].IsNull == false)
                     {
-                        switch ((EnumerableOrderType)(at.ConstructorArguments[0].Value))
+                        switch (at.ConstructorArguments[0].Value)
                         {
-                            case EnumerableOrderType.Ordered:
-                                return (property, defaultComp, DictionaryCantBeOrderedType);
-                            case EnumerableOrderType.Set:
+                            case 2:
                                 return (property, defaultComp, DictionaryCantBeSetType);
+                            case 1:
+                                return (property, defaultComp, DictionaryCantBeOrderedType);
                             default:
                                 var valType = args[1];
                                 var valTypeName = valType.ToNullableFullyQualifiedFormat();
@@ -179,15 +179,15 @@ namespace EMDD.KtEquatable.Core
                     var at = property.GetAttribute(Atts.EnumerableEquality);
                     if (at?.ConstructorArguments[0].IsNull == false)
                     {
-                        var orderType = (EnumerableOrderType)at.ConstructorArguments[0].Value;
+                        var orderType = at.ConstructorArguments[0].Value;
                         return (property, new PropertyWithComparerEquality
                         {
                             NewOfComparer = orderType switch
                             {
-                                EnumerableOrderType.Ordered =>
-                                $"new OrderedEqualityComparer<{typeName}, {valTypeName}>({str})",
-                                EnumerableOrderType.Set =>
+                                2 =>
                                 $"new SetEqualityComparer<{typeName}, {valTypeName}>({str})",
+                                1 =>
+                                $"new OrderedEqualityComparer<{typeName}, {valTypeName}>({str})",
                                 _ =>
                                 $"new UnorderedEqualityComparer<{typeName}, {valTypeName}>({str})"
                             },

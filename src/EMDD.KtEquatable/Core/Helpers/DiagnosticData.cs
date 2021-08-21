@@ -74,24 +74,24 @@ namespace EMDD.KtEquatable.Core
         public static TypeInfo<IPropertySymbol> DictionaryCantBeOrderedType = (s) =>
           (
               "KtEQG8",
-              $"Dictionary Cannot be Marked with {typeof(EnumerableEqualityAttribute).Name} with {nameof(EnumerableOrderType.Ordered)}.",
-              $"{s?.ToFullyQualifiedFormat()} is a dictionary type and should not be marked with {typeof(EnumerableEqualityAttribute).Name} with {nameof(EnumerableOrderType.Ordered)}.",
+              $"Dictionary Cannot be Marked with {AttributeWriter.AttrNamespace}.{AttributeWriter.EnumerableEqualityAttrName} with EnumerableOrderType.Ordered.",
+              $"{s?.ToFullyQualifiedFormat()} is a dictionary type and should not be marked with {AttributeWriter.AttrNamespace}.{AttributeWriter.EnumerableEqualityAttrName} with EnumerableOrderType.Ordered.",
               DiagnosticSeverity.Warning
           );
 
         public static TypeInfo<IPropertySymbol> DictionaryCantBeSetType = (s) =>
           (
               "KtEQG9",
-              $"Dictionary Cannot be Marked with {typeof(EnumerableEqualityAttribute).Name} with {nameof(EnumerableOrderType.Set)}.",
-              $"{s?.ToFullyQualifiedFormat()} is a dictionary type and should not be marked with {typeof(EnumerableEqualityAttribute).Name} with {nameof(EnumerableOrderType.Set)}.",
+              $"Dictionary Cannot be Marked with {AttributeWriter.AttrNamespace}.{AttributeWriter.EnumerableEqualityAttrName} with EnumerableOrderType.Set.",
+              $"{s?.ToFullyQualifiedFormat()} is a dictionary type and should not be marked with {AttributeWriter.AttrNamespace}.{AttributeWriter.EnumerableEqualityAttrName} with EnumerableOrderType.Set.",
               DiagnosticSeverity.Warning
           );
 
         public static TypeInfo<IPropertySymbol> OtherAttributesIgnored = (s) =>
           (
               "KtEQG10",
-              $"Multiple Attributes with {typeof(IgnoreEqualityAttribute).Name}.",
-              $"{s?.ToFullyQualifiedFormat()} is marked with multiple attributes together with an {typeof(IgnoreEqualityAttribute).Name}. {typeof(IgnoreEqualityAttribute).Name} will govern.",
+              $"Multiple Attributes with {AttributeWriter.AttrNamespace}.{AttributeWriter.IgnoreEqualityAttrName}.",
+              $"{s?.ToFullyQualifiedFormat()} is marked with multiple attributes together with an {AttributeWriter.AttrNamespace}.{AttributeWriter.IgnoreEqualityAttrName}. {AttributeWriter.AttrNamespace}.{AttributeWriter.IgnoreEqualityAttrName} will govern.",
               DiagnosticSeverity.Warning
           );
 
@@ -115,7 +115,7 @@ namespace EMDD.KtEquatable.Core
         (
             "KtEQG13",
             "Non-Class Property Marked as ReferenceEquality",
-            $"{s?.ToFullyQualifiedFormat()} has been marked with {typeof(ReferenceEqualityAttribute).FullName} despite not being a class. Code was not generated.",
+            $"{s?.ToFullyQualifiedFormat()} has been marked with {AttributeWriter.AttrNamespace}.{AttributeWriter.ReferenceEqualityAttrName} despite not being a class. Code was not generated.",
             DiagnosticSeverity.Warning
         );
 

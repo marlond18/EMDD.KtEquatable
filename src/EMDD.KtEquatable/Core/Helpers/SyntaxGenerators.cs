@@ -4,16 +4,72 @@ using EMDD.KtEquatable.Core.EqualityComparers;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Text;
 
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace EMDD.KtEquatable.Syntax
 {
     public static class SyntaxGenerators
     {
+        internal static SourceText Write(Action<IndentedTextWriter> writer)
+        {
+            var strWriter = new StringWriter();
+            var i = new IndentedTextWriter(strWriter, "\t");
+            writer(i);
+            return SourceText.From(strWriter.ToString(), Encoding.UTF8);
+        }
+
+        internal static void WriteMethod(this IndentedTextWriter writer, string header, Action<IndentedTextWriter> action)
+        {
+            writer.WriteLine(header);
+            writer.WriteInsideBracket(action);
+        }
+
+        internal static void WriteMethod(this IndentedTextWriter writer, string header)
+        {
+            writer.WriteLine(header);
+            writer.WriteInsideBracket("");
+        }
+
+        internal static void WriteMethod(this IndentedTextWriter writer, string header, string content)
+        {
+            writer.WriteLine(header);
+            writer.WriteInsideBracket(content);
+        }
+
+        public static void WriteInsideBracket(this IndentedTextWriter writer, Action<IndentedTextWriter> action)
+        {
+            writer.OpenBracket();
+            action(writer);
+            writer.CloseBracket();
+        }
+
+        public static void WriteInsideBracket(this IndentedTextWriter writer, string content)
+        {
+            writer.OpenBracket();
+            if (!string.IsNullOrWhiteSpace(content)) writer.WriteLine(content);
+            writer.CloseBracket();
+        }
+
+        public static void OpenBracket(this IndentedTextWriter writer)
+        {
+            writer.WriteLine("{");
+            writer.Indent++;
+        }
+
+        public static void CloseBracket(this IndentedTextWriter writer)
+        {
+            writer.Indent--;
+            writer.WriteLine("}");
+        }
+
         public static bool IsEqualityContract(this IPropertySymbol symbol) =>
             symbol.ToNullableFullyQualifiedFormat() == "EqualityContract";
 

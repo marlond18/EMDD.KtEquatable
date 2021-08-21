@@ -10,7 +10,7 @@ namespace KtEquatable.Tests.Classes
     [TestClass]
     public partial class SetEquality
     {
-        [EMDD.KtEquatable.Core.Attributes.Equatable]
+        [Equatable]
         public partial class Data
         {
             [EnumerableEquality(EnumerableOrderType.Set)]
