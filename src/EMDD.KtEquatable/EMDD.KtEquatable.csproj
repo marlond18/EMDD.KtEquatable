@@ -1,26 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
     <LangVersion>preview</LangVersion>
     <RootNamespace>EMDD.KtEquatable</RootNamespace>
     <AssemblyName>EMDD.KtEquatable</AssemblyName>
     <Authors>Marlon D. Dumal-is</Authors>
     <Company>EMDD</Company>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>emd2.png</PackageIcon>
-    <PackageTags>C#, Net5, Source Generator, IEquatable&lt;T&gt;, IEquatable</PackageTags>
     <RepositoryType>git</RepositoryType>
-    <!--<IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>-->
+    <PackageTags>C#, Net5, Source Generator, IEquatable&lt;T&gt;, IEquatable</PackageTags>
     <Description>A source code generator for implemention IEquatable&lt;T&gt; using Attributes.</Description>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/marlond18/EMDD.KtEquatable.git</RepositoryUrl>
     <PackageProjectUrl>https://github.com/marlond18/EMDD.KtEquatable</PackageProjectUrl>
-    <Version>3.2.0</Version>
-    <PackageReleaseNotes>Changes on implementation/writing of attributes and comparers</PackageReleaseNotes>
-    
+    <Version>3.3.0</Version>
+    <PackageReleaseNotes>added implementation for struct types</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -30,14 +27,18 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\..\build\EMDD.KtEquatable\</OutputPath>
   </PropertyGroup>
-
+  
+    <PropertyGroup>
+    <RestoreAdditionalProjectSources>https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet5/nuget/v3/index.json ;$(RestoreAdditionalProjectSources)</RestoreAdditionalProjectSources>
+  </PropertyGroup>
+  
   <ItemGroup>
     <None Include="Images\emd2.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.9.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.9.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2" PrivateAssets="all" />
   </ItemGroup>
 
